@@ -31,7 +31,7 @@ public class AnimalController {
     @PostMapping()
     public String registerAnimal(@ModelAttribute Animal animal) {
         dao.create(animal);
-        return "Created successfully";
+        return animal.toString();
     }
 
     @DeleteMapping()

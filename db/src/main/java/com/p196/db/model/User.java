@@ -66,4 +66,15 @@ public class User {
         this.other = other;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", other='" + other + '\'' +
+                '}';
+    }
 }

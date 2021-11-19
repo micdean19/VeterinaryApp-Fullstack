@@ -64,7 +64,6 @@ public class UserController {
         // default case
         if (userKey == null) {
             this.dao = new UserDAO(dao.getJdbcTemplate());
-            System.out.println("HERE");
             return;
         }
 

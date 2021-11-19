@@ -92,7 +92,7 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public void update(User userRegistration, int id) {
+    public void update(User user, int id) {
 
     }
 

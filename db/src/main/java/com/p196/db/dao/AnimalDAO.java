@@ -89,6 +89,7 @@ public class AnimalDAO implements DAO<Animal>{
 
     @Override
     public void update(Animal animal, int animalID) {
+        System.out.println(animal);
         String sql =
                 "UPDATE ANIMAL " +
                         "SET " +
@@ -96,7 +97,7 @@ public class AnimalDAO implements DAO<Animal>{
                         "Name = ?, " +
                         "Breed = ?, " +
                         "Dob = ?, " +
-                        "HealthStatus = ?, " +
+                        "HealthStatus = ? " +
                         "WHERE AnimalID = ?";
         int update = jdbcTemplate.update(
                 sql,
