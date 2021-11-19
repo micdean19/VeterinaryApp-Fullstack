@@ -35,11 +35,12 @@ public class UserController {
     }
 
     @PostMapping()
-    public void registerUser(@ModelAttribute User user,
+    public String registerUser(@ModelAttribute User user,
                              @RequestParam(required = false, name="UserKey") String userKey)
     {
         setDao(userKey);
         dao.create(user);
+        return "Created successfully";
     }
 
     @DeleteMapping()
@@ -51,11 +52,12 @@ public class UserController {
     }
 
     @PutMapping()
-    public void updateUser(@ModelAttribute User user,
+    public String updateUser(@ModelAttribute User user,
                              @RequestParam(required = false, name="UserID") Integer userId,
                              @RequestParam(required = false, name="UserKey") String userKey){
         setDao(userKey);
         dao.update(user, userId);
+        return "Updated successfully";
     }
 
     public void setDao(String userKey) {

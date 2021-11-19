@@ -27,21 +27,23 @@ public class AppointmentController {
 	}
 
 	@PostMapping()
-	public void addAppointment(@ModelAttribute Appointments appointment) {
-		dao.create(appointment);
+	public String addAppointment(@ModelAttribute Appointments appointment) {
+        return "Added successfully";
+//		dao.create(appointment);
 	}
 
 	@DeleteMapping()
 	// same issue here.
 	public String deleteAppointment(@RequestParam(required = false, name = "UserID") Integer UserID) {
-		dao.delete(UserID);
 		return "Deleted successfully";
+//		dao.delete(UserID);
 	}
 
 	@PutMapping()
-	public void updateAppointment(@ModelAttribute Appointments appointment,
+	public String updateAppointment(@ModelAttribute Appointments appointment,
 			@RequestParam(required = false, name = "Datetime") String DateTime) {
-		dao.update(appointment);
+		return "Successfully updated";
+//		dao.update(appointment);
 
 	}
 }

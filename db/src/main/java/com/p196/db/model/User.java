@@ -1,11 +1,8 @@
 package com.p196.db.model;
 
-
-import java.time.LocalDate;
-
 public class User {
     private Integer userId;
-    private String Username;
+    private String username;
     private String password;
     private String email;
     private String firstName;
@@ -22,11 +19,11 @@ public class User {
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+       this.username = username;
     }
 
     public String getPassword() {

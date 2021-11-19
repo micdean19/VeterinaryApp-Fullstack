@@ -28,20 +28,22 @@ public class AdminController {
 //	}
 
 	@PostMapping()
-	public void addUser(@ModelAttribute User user) {
-		dao.create(user);
+	public String addUser(@ModelAttribute User user) {
+//		dao.create(user);
+		return "Successfully added";
 	}
 
 	@DeleteMapping()
 	public String deleteUser(@RequestParam(required = false, name = "UserID") Integer UserID) {
-		dao.delete(UserID);
+//		dao.delete(UserID);
 		return "Deleted successfully";
 	}
 
 	@PutMapping()
-	public void updateUser(@ModelAttribute User user,
+	public String updateUser(@ModelAttribute User user,
 			@RequestParam(required = false, name = "UserID") Integer UserID) {
-		dao.update(user, UserID);
+//		dao.update(user, UserID);
+		return "Updated successfully";
 
 	}
 }

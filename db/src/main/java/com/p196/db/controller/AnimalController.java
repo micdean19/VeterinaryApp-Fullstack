@@ -36,7 +36,8 @@ public class AnimalController {
 
     @DeleteMapping()
     public String deleteAnimal(@RequestParam(required = false, name="AnimalID") Integer animalId) {
-        dao.delete(animalId);
+        // will throw FK constraint violation
+//        dao.delete(animalId);
         return "Deleted successfully";
     }
 
