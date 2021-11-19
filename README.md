@@ -17,18 +17,18 @@ Small note:  We used Spring boot and integrated our backend api with a mysql dat
 
 Note, all functionality for these stories has not been implemented, however, all of these stories have endpoints associated. 
 
-- Epic P196-2:
+* Epic P196-2:
 -   Story: P196-8 - View Animal Status
-- Epic P196-21 Admin Access:
+* Epic P196-21 Admin Access:
 -   Story: P196-30
 -   Story: P196-29
 -   Story: P196-25
 -   Story: P196-6
 -   Story: P196-7
-- Epic P196-35:
+* Epic P196-35:
 -   Story: P196-46
 -   Story P196-47
-- Epic 196-31:
+* Epic 196-31:
 -   Story P196-37
 ## Examples of a working backend with the API:
 
