@@ -38,7 +38,31 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public void create(User userRegistration) {
+    public void create(User user) {
+        String sql =
+                "INSERT " +
+                        "INTO USERS(" +
+                        "Username, " +
+                        "Password, " +
+                        "Email, " +
+                        "Fname, " +
+                        "Lname, " +
+                        "OtherStuffs) " +
+                        "VALUES(?,?,?,?,?,?)";
+        int insert = jdbcTemplate.update(
+                sql,
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getOther()
+        );
+        if(insert == 1){
+            log.info("New user created: " + user.getUsername());
+        } else {
+            log.info("Mistake");
+        }
 
     }
 

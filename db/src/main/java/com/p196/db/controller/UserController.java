@@ -40,7 +40,7 @@ public class UserController {
     {
         setDao(userKey);
         dao.create(user);
-        return "Created successfully";
+        return user.toString();
     }
 
     @DeleteMapping()
@@ -64,6 +64,7 @@ public class UserController {
         // default case
         if (userKey == null) {
             this.dao = new UserDAO(dao.getJdbcTemplate());
+            System.out.println("HERE");
             return;
         }
 
