@@ -5,6 +5,7 @@ import com.p196.db.dao.UserDAO;
 import com.p196.db.model.Admin;
 import com.p196.db.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,7 +17,7 @@ public class AdminController {
 	private final UserDAO userDao;
 	
 	@Autowired
-	public AdminController(AdminDAO dao, UserDAO userDao) {
+	public AdminController(AdminDAO dao, @Qualifier("userDAO") UserDAO userDao) {
 		this.dao = dao;
 		this.userDao = userDao;
 	}

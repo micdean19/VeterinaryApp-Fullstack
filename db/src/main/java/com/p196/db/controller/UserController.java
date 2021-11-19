@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @DeleteMapping()
-    public String deleteAnimal(@RequestParam(required = false, name="UserID") Integer userId,
+    public String deleteUser(@RequestParam(required = false, name="UserID") Integer userId,
                                @RequestParam(required = false, name="UserKey") String userKey) {
         setDao(userKey);
         dao.delete(userId);
@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @PutMapping()
-    public void updateAnimal(@ModelAttribute User user,
+    public void updateUser(@ModelAttribute User user,
                              @RequestParam(required = false, name="UserID") Integer userId,
                              @RequestParam(required = false, name="UserKey") String userKey){
         setDao(userKey);
