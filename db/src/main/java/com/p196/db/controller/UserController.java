@@ -1,21 +1,29 @@
 package com.p196.db.controller;
 import com.p196.db.dao.UserDAO;
 import com.p196.db.dao.VetDAO;
+import com.p196.db.model.Animal;
 import com.p196.db.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/user-registration")
+@RequestMapping(path = "/user-management")
 public class UserController {
     private UserDAO dao;
 
     @Autowired
     public UserController(@Qualifier("userDAO") UserDAO dao) {
         this.dao = dao;
+    }
+
+
+    @GetMapping(path="/all")
+    public List<User> getUserList() {
+        return dao.list();
     }
 
     @GetMapping()
@@ -27,15 +35,16 @@ public class UserController {
     }
 
     @PostMapping()
-    public void registerUser(@ModelAttribute User user,
+    public String registerUser(@ModelAttribute User user,
                              @RequestParam(required = false, name="UserKey") String userKey)
     {
         setDao(userKey);
         dao.create(user);
+        return "Created successfully";
     }
 
     @DeleteMapping()
-    public String deleteAnimal(@RequestParam(required = false, name="UserID") Integer userId,
+    public String deleteUser(@RequestParam(required = false, name="UserID") Integer userId,
                                @RequestParam(required = false, name="UserKey") String userKey) {
         setDao(userKey);
         dao.delete(userId);
@@ -43,11 +52,12 @@ public class UserController {
     }
 
     @PutMapping()
-    public void updateAnimal(@ModelAttribute User user,
+    public String updateUser(@ModelAttribute User user,
                              @RequestParam(required = false, name="UserID") Integer userId,
                              @RequestParam(required = false, name="UserKey") String userKey){
         setDao(userKey);
         dao.update(user, userId);
+        return "Updated successfully";
     }
 
     public void setDao(String userKey) {
@@ -57,12 +67,12 @@ public class UserController {
             return;
         }
 
+        // TODO make this a factory
         switch (userKey) {
             case "healthcare":
                 this.dao = new VetDAO(dao.getJdbcTemplate());
                 break;
             case "student":
-//                this.dao = new UserDAO();
                 break;
             default:
                 this.dao = new UserDAO(dao.getJdbcTemplate());
