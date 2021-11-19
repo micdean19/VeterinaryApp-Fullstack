@@ -3,6 +3,8 @@ package com.p196.db.dao;
 import java.util.List;
 import java.util.Optional;
 
+import com.p196.db.model.User;
+
 public interface DAO<T>{
 
     List<T> list();
@@ -14,5 +16,7 @@ public interface DAO<T>{
     void update(T t, int id);
 
     void delete(int id);
+
+
 
 }
