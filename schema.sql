@@ -132,26 +132,3 @@ FLUSH PRIVILEGES;
 CREATE USER 'mock_user'@'localhost' IDENTIFIED BY 'password';
 
 GRANT ALL PRIVILEGES ON ensf607_vet_mockdb. * TO 'mock_user'@'localhost';
-
-# SELECT * FROM ANIMAL
-#
-#
-# SELECT AnimalID, Name, AnimalType, Breed, Dob, HealthStatus FROM ANIMAL WHERE AnimalID = 1001;
-#
-#
-# SELECT USERS.UserID, Username, Password, Email, Fname, Lname, OtherStuffs, Type, numStudents FROM USERS JOIN HealthPeople HP on USERS.UserID = HP.UserID
-# WHERE HP.UserID = 1002;
-#
-SELECT USERS.UserID, Username, Password, Email, Fname, Lname, OtherStuffs FROM USERS;
-
-SELECT AnimalID, AnimalType, Name, Breed, Dob, HealthStatus FROM ANIMAL;
-
-SELECT
-    USERS.UserID,
-    Username,
-    Password,
-    Email,
-    Fname,
-    Lname,
-    OtherStuffs,
-FROM USERS;
