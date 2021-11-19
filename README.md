@@ -28,5 +28,5 @@ While in `final-project-uofeng607-196`:
 - run projet with `mvn exec:java -Dexec.mainClass=com.p196.db.DbApplication`
 
 ## Video
-https://www.loom.com/share/5ad8564c427048c18e7cd98c4f832f3a
-<div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe src="https://www.loom.com/embed/5ad8564c427048c18e7cd98c4f832f3a" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+![Link]https://www.loom.com/share/5ad8564c427048c18e7cd98c4f832f3a
+
