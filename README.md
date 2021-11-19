@@ -20,16 +20,16 @@ Note, all functionality for these stories has not been implemented, however, all
 * Epic P196-2:
   - Story: P196-8 - View Animal Status
 * Epic P196-21 Admin Access:
--   Story: P196-30
--   Story: P196-29
--   Story: P196-25
--   Story: P196-6
--   Story: P196-7
+  - Story: P196-30
+  - Story: P196-29
+  - Story: P196-25
+ -  Story: P196-6
+ -  Story: P196-7
 * Epic P196-35:
--   Story: P196-46
--   Story P196-47
+ -  Story: P196-46
+ -  Story P196-47
 * Epic 196-31:
--   Story P196-37
+ -  Story P196-37
 ## Examples of a working backend with the API:
 
 1. Illustration of our mocktables (that was loaded into the mysql database)
