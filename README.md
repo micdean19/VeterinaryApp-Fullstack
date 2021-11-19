@@ -18,7 +18,7 @@ Small note:  We used Spring boot and integrated our backend api with a mysql dat
 Note, all functionality for these stories has not been implemented, however, all of these stories have endpoints associated. 
 
 * Epic P196-2:
--   Story: P196-8 - View Animal Status
+  - Story: P196-8 - View Animal Status
 * Epic P196-21 Admin Access:
 -   Story: P196-30
 -   Story: P196-29
