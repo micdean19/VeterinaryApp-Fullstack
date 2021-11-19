@@ -13,6 +13,8 @@
 
 Small note:  We used Spring boot and integrated our backend api with a mysql database as mock data.
 
+## Stories Covered:
+* 
 ## Examples of a working backend with the API:
 
 1. Illustration of our mocktables (that was loaded into the mysql database)
@@ -27,3 +29,4 @@ While in `final-project-uofeng607-196`:
 
 ## Video
 https://www.loom.com/share/5ad8564c427048c18e7cd98c4f832f3a
+<div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe src="https://www.loom.com/embed/5ad8564c427048c18e7cd98c4f832f3a" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
