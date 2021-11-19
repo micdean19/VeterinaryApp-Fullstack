@@ -1,21 +1,29 @@
 package com.p196.db.controller;
 import com.p196.db.dao.UserDAO;
 import com.p196.db.dao.VetDAO;
+import com.p196.db.model.Animal;
 import com.p196.db.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/user-registration")
+@RequestMapping(path = "/user-management")
 public class UserController {
     private UserDAO dao;
 
     @Autowired
     public UserController(@Qualifier("userDAO") UserDAO dao) {
         this.dao = dao;
+    }
+
+
+    @GetMapping(path="/all")
+    public List<User> getUserList() {
+        return dao.list();
     }
 
     @GetMapping()
@@ -57,12 +65,12 @@ public class UserController {
             return;
         }
 
+        // TODO make this a factory
         switch (userKey) {
             case "healthcare":
                 this.dao = new VetDAO(dao.getJdbcTemplate());
                 break;
             case "student":
-//                this.dao = new UserDAO();
                 break;
             default:
                 this.dao = new UserDAO(dao.getJdbcTemplate());

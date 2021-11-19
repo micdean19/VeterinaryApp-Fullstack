@@ -33,15 +33,7 @@ public class UserDAO implements DAO<User> {
     @Override
     public List<User> list() {
         String sql =
-                "SELECT " +
-                        "USERS.UserID, " +
-                        "Username, " +
-                        "Password, " +
-                        "Email, " +
-                        "Fname, " +
-                        "Lname, " +
-                        "OtherStuffs, " +
-                        "FROM USERS ";
+                "SELECT USERS.UserID, Username, Password, Email, Fname, Lname, OtherStuffs FROM USERS";
         return jdbcTemplate.query(sql,rowMapper);
     }
 
@@ -85,6 +77,7 @@ public class UserDAO implements DAO<User> {
 
     }
 
+    // passing connection parameters
     public JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;
     }

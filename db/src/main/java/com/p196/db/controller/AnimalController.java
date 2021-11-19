@@ -5,10 +5,11 @@ import com.p196.db.model.Animal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/animal-registration")
+@RequestMapping(path = "/animal-management")
 public class AnimalController {
     private final AnimalDAO dao;
 
@@ -17,14 +18,20 @@ public class AnimalController {
         this.dao = dao;
     }
 
+    @GetMapping(path="/all")
+    public List<Animal> getAnimalList() {
+        return dao.list();
+    }
+
     @GetMapping()
     public Optional<Animal> getAnimal(@RequestParam(required = false, name="AnimalID") Integer animalId) {
         return dao.get(animalId);
     }
 
     @PostMapping()
-    public void registerAnimal(@ModelAttribute Animal animal) {
+    public String registerAnimal(@ModelAttribute Animal animal) {
         dao.create(animal);
+        return "Created successfully";
     }
 
     @DeleteMapping()
@@ -34,10 +41,10 @@ public class AnimalController {
     }
 
     @PutMapping()
-    public void updateAnimal(@ModelAttribute Animal animal,
+    public String updateAnimal(@ModelAttribute Animal animal,
                              @RequestParam(required = false, name="AnimalID") Integer animalId){
         dao.update(animal, animalId);
-
+        return "Updated successfully";
     }
 
 }

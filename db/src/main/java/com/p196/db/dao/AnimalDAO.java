@@ -35,13 +35,7 @@ public class AnimalDAO implements DAO<Animal>{
     @Override
     public List<Animal> list() {
         String sql =
-                "SELECT " +
-                        "AnimalID, " +
-                        "Name, " +
-                        "Breed, " +
-                        "Dob, " +
-                        "HealthStatus " +
-                        "FROM ANIMAL";
+                "SELECT AnimalID, AnimalType, Name, Breed, Dob, HealthStatus FROM ANIMAL";
         return jdbcTemplate.query(sql,rowMapper);
     }
 
