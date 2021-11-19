@@ -13,8 +13,9 @@
 
 Small note:  We used Spring boot and integrated our backend api with a mysql database as mock data.
 
-## Stories Covered:
-* 
+## Stories and Epics Covered:
+* Epic: P196-2
+*   Story: P196-8 - View Animal Status
 ## Examples of a working backend with the API:
 
 1. Illustration of our mocktables (that was loaded into the mysql database)
@@ -28,5 +29,5 @@ While in `final-project-uofeng607-196`:
 - run projet with `mvn exec:java -Dexec.mainClass=com.p196.db.DbApplication`
 
 ## Video
-[Link](https://www.loom.com/share/5ad8564c427048c18e7cd98c4f832f3a)
+https://www.loom.com/share/5ad8564c427048c18e7cd98c4f832f3a
 
