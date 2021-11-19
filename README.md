@@ -18,6 +18,12 @@ Small note:  We used Spring boot and integrated our backend api with a mysql dat
 1. Illustration of our mocktables (that was loaded into the mysql database)
 ![mocktables](resources/Mocktables.PNG)
 
+## Commands to Run From Command Line:
+
+While in `final-project-uofeng607-196`:
+- navigate down one level into db `cd db`
+- build maven project with `mvn install`
+- run projet with `mvn exec:java -Dexec.mainClass=com.p196.db.DbApplication`
 
 ## Video
-![Video Demo](https://www.loom.com/share/5ad8564c427048c18e7cd98c4f832f3a)
+https://www.loom.com/share/5ad8564c427048c18e7cd98c4f832f3a
