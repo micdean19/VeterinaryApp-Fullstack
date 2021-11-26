@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// You have to import any css or components to be used here
+import "./App.css";
+// For example importing main
+import Main from "./components/MainComponent";
+
+// Using this because we are using router, we need to wrap eveyrhting
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        // App is only gonna load in main component
+        // The main has 1 header and 1 bottom (that doesn't change)
+        // But it's also going to have a "middle" that changes depending on use case (i.e. nav bar)
+        <div className="App">
+            {/* Callign the main component */}
+            <BrowserRouter>
+                <Main />
+            </BrowserRouter>
+        </div>
+    );
 }
 
+// For App to be used in index.js
 export default App;
