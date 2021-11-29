@@ -5,7 +5,7 @@ function Home() {
         <React.Fragment>
             <div>Home Page</div>
             <p> Note that we need to specify the router</p>
-            <Link to="/Animal">Click here To home</Link>
+            <Link to="/Animal">Click here To go to animal route</Link>
         </React.Fragment>
     );
 }
