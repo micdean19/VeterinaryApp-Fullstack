@@ -12,18 +12,35 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Button from "react-bootstrap/Button";
+
+const footerstyle = {
+    background: "#333",
+    color: "#fff",
+    height: "3rem",
+};
+const footerStyling = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+};
 const Footer = () => {
     return (
         // <h1>Hi</h1>
-        <Container className="p-3 bg-primary">
-            <Row>
-                <Col>
-                    <h3> Footer Component</h3>
-                </Col>
-                <Col>
-                    <h3>Hi</h3>
+        <Container fluid className="align-middle w-100" style={footerstyle}>
+            <Row style={footerStyling}>
+                <Col className="w-75"></Col>
+                <Col
+                    style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        marginRight: "2rem",
+                        textAlign: "middle",
+                        // Note all CSS work here, except instead of margin-right you use camelcase
+                    }}
+                    className="align-middle pt-2 mt-1"
+                >
+                    <p className="">By Alex & Michael</p>
                 </Col>
             </Row>
         </Container>

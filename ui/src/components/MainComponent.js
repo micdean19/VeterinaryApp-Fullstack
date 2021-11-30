@@ -21,6 +21,8 @@ function Main() {
             <Switch>
                 <Route path="/home" component={Home} />
                 <Route path="/animal" component={Animal} />
+                {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
+                {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
                 <Redirect to="/home" />
             </Switch>
             <Footer />
