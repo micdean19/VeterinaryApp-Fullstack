@@ -1,5 +1,7 @@
 package com.p196.db.model;
 
+import com.nimbusds.jose.shaded.json.JSONObject;
+
 public class User {
     private Integer userId;
     private String username;
@@ -76,5 +78,16 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", other='" + other + '\'' +
                 '}';
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("userId", userId);
+        json.put("username", username);
+        json.put("email", email);
+        json.put("firstName", firstName);
+        json.put("lastName", lastName);
+        json.put("other", other);
+        return json;
     }
 }

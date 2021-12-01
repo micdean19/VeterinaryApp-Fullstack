@@ -70,7 +70,7 @@ public class UserDAO implements DAO<User> {
     public Optional<User> get(int id) {
         String sql =
                 "SELECT " +
-                        "USERS.UserID, " +
+                        "UserID, " +
                         "Username, " +
                         "Password, " +
                         "Email, " +
@@ -100,6 +100,32 @@ public class UserDAO implements DAO<User> {
     public void delete(int id) {
 
     }
+
+    public Optional<User> verifyUser(String username, String password) {
+        String sql =
+                "SELECT " +
+                        "UserID, " +
+                        "Username, " +
+                        "Password, " +
+                        "Email, " +
+                        "Fname, " +
+                        "Lname, " +
+                        "OtherStuffs " +
+                        "FROM USERS " +
+                        "WHERE Email = ?"
+                        + "AND Password = ?";
+
+        User user = null;
+
+        try{
+            List<User> users = jdbcTemplate.query(sql, rowMapper, username, password);
+            user = users.get(0);
+        } catch (IndexOutOfBoundsException ex) {
+            log.info(username + " not found");
+        }
+        return Optional.ofNullable(user);
+    }
+
 
     // passing connection parameters
     public JdbcTemplate getJdbcTemplate() {
