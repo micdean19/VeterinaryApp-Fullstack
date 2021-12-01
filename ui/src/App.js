@@ -25,7 +25,9 @@ function App() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
+      const foundUser = loggedInUser;
+      // was causing json error
+      // const foundUser = JSON.parse(loggedInUser);
       setUser(foundUser);
     }
   }, []);
@@ -49,9 +51,6 @@ function App() {
     axios(config)
       .then((response) => {
         console.log(response);
-        // just setting the user so we can see what a login looks like
-
-        setUser("test");
         if (response.data.success === true) {
           setUser(response.data.user);
           localStorage.setItem("user", response.data.user);
@@ -59,6 +58,7 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
+        // just setting the user so we can see what a login looks like
         setUser("testing");
       });
   };
