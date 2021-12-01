@@ -23,6 +23,7 @@ public class UserDAO implements DAO<User> {
         user.setFirstName(rs.getString("Fname"));
         user.setLastName(rs.getString("Lname"));
         user.setEmail(rs.getString("Email"));
+        user.setAccessLevel(rs.getString("AccessLevel"));
         return user;
     };
 
@@ -33,7 +34,7 @@ public class UserDAO implements DAO<User> {
     @Override
     public List<User> list() {
         String sql =
-                "SELECT USERS.UserID, Username, Password, Email, Fname, Lname, OtherStuffs FROM USERS";
+                "SELECT UserID, Username, Password, Email, Fname, Lname, OtherStuffs, AccessLevel FROM USERS";
         return jdbcTemplate.query(sql,rowMapper);
     }
 
@@ -47,8 +48,9 @@ public class UserDAO implements DAO<User> {
                         "Email, " +
                         "Fname, " +
                         "Lname, " +
-                        "OtherStuffs) " +
-                        "VALUES(?,?,?,?,?,?)";
+                        "OtherStuffs, " +
+                        "AccessLevel) " +
+                        "VALUES(?,?,?,?,?,?,?)";
         int insert = jdbcTemplate.update(
                 sql,
                 user.getUsername(),
@@ -56,7 +58,8 @@ public class UserDAO implements DAO<User> {
                 user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),
-                user.getOther()
+                user.getOther(),
+                user.getAccessLevel()
         );
         if(insert == 1){
             log.info("New user created: " + user.getUsername());
@@ -76,7 +79,8 @@ public class UserDAO implements DAO<User> {
                         "Email, " +
                         "Fname, " +
                         "Lname, " +
-                        "OtherStuffs " +
+                        "OtherStuffs, " +
+                        "AccessLevel " +
                         "FROM USERS " +
                         "WHERE USERS.UserID = ?";
 
@@ -110,7 +114,8 @@ public class UserDAO implements DAO<User> {
                         "Email, " +
                         "Fname, " +
                         "Lname, " +
-                        "OtherStuffs " +
+                        "OtherStuffs, " +
+                        "AccessLevel " +
                         "FROM USERS " +
                         "WHERE Email = ?"
                         + "AND Password = ?";

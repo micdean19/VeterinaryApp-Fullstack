@@ -13,16 +13,15 @@ import Logout from "./LogoutComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
 // This is a Component. Remember components are functions
-function Main() {
+const Main = ({ user, setUser }) => {
   return (
     // All components must be wrapped in a div or React.Fragment
     <div>
       {/* Note components are Capitalize like H*eader or F*ooter */}
-      <Header />
+      <Header setUser={setUser} user={user} />
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/animal" component={Animal} />
-        <Route path="/logout" component={Logout} />
         {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
         {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
         <Redirect to="/home" />
@@ -30,7 +29,7 @@ function Main() {
       <Footer />
     </div>
   );
-}
+};
 
 // TO use components ELSEWHERE you have to export it (gonna be called in APP)
 export default withRouter(Main);

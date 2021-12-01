@@ -25,9 +25,9 @@ function App() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
-      const foundUser = loggedInUser;
+      // const foundUser = loggedInUser;
       // was causing json error
-      // const foundUser = JSON.parse(loggedInUser);
+      const foundUser = JSON.parse(loggedInUser);
       setUser(foundUser);
     }
   }, []);
@@ -53,7 +53,7 @@ function App() {
         console.log(response);
         if (response.data.success === true) {
           setUser(response.data.user);
-          localStorage.setItem("user", response.data.user);
+          localStorage.setItem("user", JSON.stringify(response.data.user));
         }
       })
       .catch((error) => {
@@ -70,10 +70,10 @@ function App() {
       // The main has 1 header and 1 bottom (that doesn't change)
       // But it's also going to have a "middle" that changes depending on use case (i.e. nav bar)
       <div className="App">
+        <h1>{user.data}</h1>
         {/* Callign the main component */}
         <BrowserRouter>
-          <Logout SetUser={setUser} />
-          <Main />
+          <Main user={user} setUser={setUser} />
         </BrowserRouter>
       </div>
     );

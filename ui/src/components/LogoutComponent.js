@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
-const Logout = ({ SetUser }) => {
+const Logout = ({ setUser }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const logout = () => {
-    SetUser({});
+    setUser({});
     setShow(false);
     localStorage.clear();
     window.location.reload(false);
@@ -17,8 +18,9 @@ const Logout = ({ SetUser }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Logout Modal
+      <Button variant="flat" onClick={handleShow}>
+        {" "}
+        <Link className="text-dark">Logout Route</Link>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
