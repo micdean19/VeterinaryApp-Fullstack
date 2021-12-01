@@ -16,7 +16,7 @@ import Col from "react-bootstrap/Col";
 const footerstyle = {
     background: "#333",
     color: "#fff",
-    height: "3rem",
+    height: "7vh",
 };
 const footerStyling = {
     display: "flex",

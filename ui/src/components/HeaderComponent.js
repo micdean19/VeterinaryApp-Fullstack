@@ -15,6 +15,7 @@ const containerstyle = {
     borderBottom: "10px solid black",
     background: "#efefef",
     padding: "10px 10px 0 10px",
+    height: "10vh",
 };
 
 const spacingrightButton = {
