@@ -30,8 +30,7 @@ function App() {
     }
   }, []);
 
-  const handleSubmit = async (e) => {
-    // const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     var axios = require("axios");
@@ -50,6 +49,9 @@ function App() {
     axios(config)
       .then((response) => {
         console.log(response);
+        // just setting the user so we can see what a login looks like
+
+        setUser("test");
         if (response.data.success === true) {
           setUser(response.data.user);
           localStorage.setItem("user", response.data.user);
@@ -57,6 +59,7 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
+        setUser("testing");
       });
   };
 
