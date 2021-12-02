@@ -2,9 +2,9 @@ import React from "react";
 import UserItem from "./UserItem";
 import Table from "react-bootstrap/Table";
 
-const UserList = ({ users, onUserSelect }) => {
+const UserList = ({ users, setSelectedUser }) => {
   const renderedList = users.map((user) => {
-    return <UserItem onUserSelect={onUserSelect} user={user} />;
+    return <UserItem setSelectedUser={setSelectedUser} user={user} />;
   });
 
   return (

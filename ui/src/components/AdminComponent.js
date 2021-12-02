@@ -6,8 +6,8 @@ import FormControl from "react-bootstrap/FormControl";
 const Admin = () => {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [searchFirst, setSearchFirst] = useState("");
-  const [searchLast, setSearchLast] = useState("");
+  const [firstName, setFirst] = useState("");
+  const [lastName, setLast] = useState("");
 
   useEffect(() => {
     const search = () => {
@@ -16,14 +16,12 @@ const Admin = () => {
       let params = {};
       let headers = {};
 
-      console.log(searchLast);
-
-      if (searchFirst != "" || searchLast != "") {
+      if (firstName != "" || lastName != "") {
         endpoint = "/searchName";
         console.log("searching");
         params = {
-          firstName: searchFirst,
-          lastName: searchLast,
+          firstName: firstName,
+          lastName: lastName,
         };
       }
 
@@ -51,8 +49,7 @@ const Admin = () => {
       search();
     }
     const id = setTimeout(() => {
-      if (searchFirst || searchLast) {
-        console.log(searchLast);
+      if (firstName || lastName) {
         search();
       } else {
         console.log("searching on interval");
@@ -67,7 +64,7 @@ const Admin = () => {
     return () => {
       clearTimeout(id);
     };
-  }, [searchFirst, searchLast]);
+  }, [firstName, lastName]);
 
   return (
     <div className="ui container">
@@ -75,12 +72,12 @@ const Admin = () => {
         <InputGroup.Text>First and last name</InputGroup.Text>
         <FormControl
           aria-label="First name"
-          onChange={(e) => setSearchFirst(e.target.value)}
+          onChange={(e) => setFirst(e.target.value)}
         />
         <FormControl
           aria-label="Last name"
           onChange={(e) => {
-            setSearchLast(e.target.value);
+            setLast(e.target.value);
             console.log(e.target.value);
           }}
         />
@@ -88,7 +85,7 @@ const Admin = () => {
       <div className="ui grid">
         <div className="ui row">
           <div className="five wide column">
-            <UserList onUserSelect={setSelectedUser} users={users} />
+            <UserList setSelectedUser={setSelectedUser} users={users} />
           </div>
         </div>
       </div>
