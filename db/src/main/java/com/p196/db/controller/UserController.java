@@ -33,6 +33,19 @@ public class UserController {
         setDao(userKey);
         return dao.get(userId);
     }
+
+    @GetMapping(path="/searchName")
+    public List<User> getUserByName(
+            @RequestParam(required = false, name="firstName") String firstName,
+            @RequestParam(required = false, name="lastName") String lastName){
+        if (firstName == null && lastName == null) {
+            return null;
+        }
+        System.out.println(lastName);
+        return dao.getByName(firstName, lastName);
+
+    }
+
     @PostMapping()
     public String registerUser(@ModelAttribute User user,
                              @RequestParam(required = false, name="UserKey") String userKey)
@@ -41,6 +54,8 @@ public class UserController {
         dao.create(user);
         return user.toString();
     }
+
+
 
     @DeleteMapping()
     public String deleteUser(@RequestParam(required = false, name="UserID") Integer userId,

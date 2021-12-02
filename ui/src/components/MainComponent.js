@@ -8,27 +8,29 @@ import Footer from "./FooterComponent";
 import Header from "./HeaderComponent";
 import Animal from "./AnimalComponent";
 import Home from "./HomeComponent";
+import Logout from "./LogoutComponent";
 
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import Admin from "./AdminComponent";
 
 // This is a Component. Remember components are functions
-function Main() {
-    return (
-        // All components must be wrapped in a div or React.Fragment
-        <div>
-            {/* Note components are Capitalize like H*eader or F*ooter */}
-            <Header />
-            <Switch>
-                <Route path="/home" component={Home} />
-                <Route path="/animal" component={Animal} />
-                {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
-                {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
-                <Redirect to="/home" />
-            </Switch>
-            <Footer />
-        </div>
-    );
-}
+const Main = ({ user, setUser }) => {
+  return (
+    // All components must be wrapped in a div or React.Fragment
+    <div>
+      {/* Note components are Capitalize like H*eader or F*ooter */}
+      <Header setUser={setUser} user={user} />
+      <Switch>
+        <Route path="/home" component={Home} />
+        <Route path="/animal" component={Animal} />
+        <Route path="/admin" component={Admin} />
+        {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
+        <Redirect to="/home" />
+      </Switch>
+      <Footer />
+    </div>
+  );
+};
 
 // TO use components ELSEWHERE you have to export it (gonna be called in APP)
 export default withRouter(Main);

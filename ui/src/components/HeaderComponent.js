@@ -3,13 +3,15 @@
 // Either way the convention is that they start by a capitalize letter
 
 // A component just RETURNS a UI
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import Logout from "./LogoutComponent";
+
 // Example 1 of styling
 const containerstyle = {
     borderBottom: "10px solid black",
@@ -30,7 +32,21 @@ const columnPutEverythingRight = {
     // Note all CSS work here, except instead of margin-right you use camelcase
 };
 
-const Header = () => {
+const Header = ({ user, setUser }) => {
+    const [admin, setAdmin] = useState(false);
+
+    useEffect(() => {
+        checkAdmin();
+    }, [user]);
+
+    const checkAdmin = () => {
+        if (user && user.accessLevel === "admin") {
+            setAdmin(true);
+        } else {
+            setAdmin(false);
+        }
+    };
+
     return (
         <Container fluid className="p-3" style={containerstyle}>
             <Row>
@@ -55,12 +71,14 @@ const Header = () => {
                                 Animal Route
                             </Link>
                         </Button>
-                        <Button variant="flat">
-                            {" "}
-                            <Link className="text-dark" to="/Animal">
-                                Animal Route
-                            </Link>
-                        </Button>
+                        <Logout setUser={setUser} />
+                        {admin === true ? (
+                            <Button variant="flat" style={spacingrightButton}>
+                                <Link className="text-dark" to="/Admin">
+                                    Admin Route
+                                </Link>
+                            </Button>
+                        ) : null}
                     </ButtonGroup>
                 </Col>
             </Row>
