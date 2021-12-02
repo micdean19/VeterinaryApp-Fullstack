@@ -11,6 +11,7 @@ import Home from "./HomeComponent";
 import Logout from "./LogoutComponent";
 
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import Admin from "./AdminComponent";
 
 // This is a Component. Remember components are functions
 const Main = ({ user, setUser }) => {
@@ -22,7 +23,7 @@ const Main = ({ user, setUser }) => {
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/animal" component={Animal} />
-        {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
+        <Route path="/admin" component={Admin} />
         {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
         <Redirect to="/home" />
       </Switch>

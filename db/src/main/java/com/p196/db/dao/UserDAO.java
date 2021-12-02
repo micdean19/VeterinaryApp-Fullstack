@@ -131,6 +131,42 @@ public class UserDAO implements DAO<User> {
         return Optional.ofNullable(user);
     }
 
+    public List<User> getByName(String firstName, String lastName) {
+        if (firstName == null)
+            firstName = "";
+
+        firstName = "%" + firstName + "%";
+
+        if (lastName == null)
+            lastName = "";
+
+        lastName = "%" + lastName + "%";
+
+
+        String sql =
+                "SELECT " +
+                        "UserID, " +
+                        "Username, " +
+                        "Password, " +
+                        "Email, " +
+                        "Fname, " +
+                        "Lname, " +
+                        "OtherStuffs, " +
+                        "AccessLevel " +
+                        "FROM USERS " +
+                        "WHERE Fname LIKE ?"
+                        + "AND Lname LIKE ?";
+
+        User user = null;
+
+        try{
+            List<User> users = jdbcTemplate.query(sql, rowMapper, firstName, lastName);
+            return users;
+        } catch (IndexOutOfBoundsException ex) {
+            log.info(firstName + " " + lastName+ " not found");
+            return null;
+        }
+    }
 
     // passing connection parameters
     public JdbcTemplate getJdbcTemplate() {
