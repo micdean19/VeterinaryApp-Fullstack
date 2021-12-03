@@ -1,2 +1,5 @@
 .idea
 .github
+.metadata
+db/.metadata
+db/.settings
