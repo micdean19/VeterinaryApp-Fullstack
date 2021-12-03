@@ -2,6 +2,7 @@ package com.p196.db.controller;
 
 import com.p196.db.dao.AnimalDAO;
 import com.p196.db.model.Animal;
+import com.p196.db.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,16 @@ public class AnimalController {
     @GetMapping()
     public Optional<Animal> getAnimal(@RequestParam(required = false, name="AnimalID") Integer animalId) {
         return dao.get(animalId);
+    }
+
+    @GetMapping(path="/searchName")
+    public List<Animal> getbyAnimalName(
+            @RequestParam(required = false, name="name") String name){
+        if (name == null) {
+            return null;
+        }
+        return dao.getByName(name);
+
     }
 
     @PostMapping()

@@ -99,38 +99,35 @@ public class AnimalDAO implements DAO<Animal>{
         return Optional.ofNullable(animal);
     }
 
-//    public List<User> getByName(String firstName, String lastName) {
-//        if (firstName == null)
-//            firstName = "";
-//        firstName = "%" + firstName + "%";
-//        if (lastName == null)
-//            lastName = "";
-//        lastName = "%" + lastName + "%";
-//
-//        String sql =
-//                "SELECT " +
-//                        "UserID, " +
-//                        "Username, " +
-//                        "Password, " +
-//                        "Email, " +
-//                        "Fname, " +
-//                        "Lname, " +
-//                        "OtherStuffs, " +
-//                        "AccessLevel " +
-//                        "FROM USERS " +
-//                        "WHERE Fname LIKE ?"
-//                        + "AND Lname LIKE ?";
-//
-//        User user = null;
-//
-//        try{
-//            List<User> users = jdbcTemplate.query(sql, rowMapper, firstName, lastName);
-//            return users;
-//        } catch (IndexOutOfBoundsException ex) {
-//            log.info(firstName + " " + lastName+ " not found");
-//            return null;
-//        }
-//    }
+    public List<Animal> getByName(String name) {
+        if (name == null)
+            name = "";
+        name = "%" + name + "%";
+
+        String sql =
+                "SELECT " +
+                        "AnimalID, " +
+                        "Name, " +
+                        "AnimalType, " +
+                        "Status, " +
+                        "AdminStatus, " +
+                        "TechnicianStatus, " +
+                        "Breed, " +
+                        "Dob, " +
+                        "HealthStatus " +
+                        "FROM ANIMAL " +
+                        "WHERE Name LIKE ?";
+
+        Animal animal = null;
+
+        try{
+            List<Animal> animals = jdbcTemplate.query(sql, rowMapper, name);
+            return animals;
+        } catch (IndexOutOfBoundsException ex) {
+            log.info(name + " not found");
+            return null;
+        }
+    }
 
     @Override
     // TO DO: Update this sql (based on added animal status + technician status)
