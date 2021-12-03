@@ -8,99 +8,102 @@ import Button from "react-bootstrap/Button";
 import { useTable } from "react-table";
 import Table from "react-bootstrap/Table";
 function Home() {
-    // The first is variable, the 2nd is a
+    // The first is variable, the 2nd is a method to set
     const [animals, setanimals] = useState([]);
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [selectedAnimal, setSelectedAnimal] = useState(null);
+    const [name, setname] = useState("");
+    useEffect(() => {
+        const search = () => {
+            var axios = require("axios");
+            // fix endpoint from backend
+            let endpoint = "/animal-management/all";
+            let params = {};
+            let headers = {};
 
-    // useEffect(() => {
-    // const search = () => {
-    //   var axios = require("axios");
-    //   let endpoint = "/all";
-    //   let params = {};
-    //   let headers = {};
+            var config = {
+                method: "get",
+                url: "http://localhost:8080" + endpoint,
+                params: params,
+                headers: headers,
+            };
 
-    //   if (firstName != "" || lastName != "") {
-    //     endpoint = "/searchName";
-    //     console.log("searching");
-    //     params = {
-    //       firstName: firstName,
-    //       lastName: lastName,
-    //     };
-    //   }
+            console.log(config);
 
-    //   var config = {
-    //     method: "get",
-    //     url: "http://localhost:8080/user-management" + endpoint,
-    //     params: params,
-    //     headers: headers,
-    //   };
+            axios(config)
+                .then(function (response) {
+                    // Check if incoming matches format of table
+                    console.log(JSON.stringify(response.data));
+                    setanimals(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        };
 
-    //   console.log(config);
+        // Waiting wait every 500 ms or until user stops typing
+        const id = setTimeout(() => {
+            if (name) {
+                search();
+            } else {
+                console.log("searching on interval");
+                search();
+            }
+        }, 500);
 
-    //   axios(config)
-    //     .then(function (response) {
-    //       console.log(JSON.stringify(response.data));
-    //       setUsers(response.data);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // };
+        // the only thing you can return is a function in a useEffect
+        // runs when the component unmounts OR at the start of a new render
+        // this is why we see the function run at the beginning of the render
+        // use this to clean up our timer
+        return () => {
+            clearTimeout(id);
+        };
+        // This is saying, whenever name change, run this again
+    }, [name]);
 
     // Temporary data
-    const data = React.useMemo(
-        () => [
-            {
-                name: "Max",
-                type: "Dog",
-                id: "01",
-                status: "Available",
-                admin: "None",
-                instructor: "None",
-                profile: "link to animal",
-            },
-            {
-                name: "Rex",
-                type: "Cat",
-                id: "02",
-                status: "Active",
-                admin: "Alex Leakos",
-                instructor: "Michael Ah",
-                profile: "link to animal",
-            },
-        ],
-        []
-    );
+    // const data = React.useMemo(animals);
+    const data = animals;
 
     // Columns (pretty sure this can be hard coded, but need to load data for data part)
     const columns = React.useMemo(
         () => [
+            {
+                Header: "Animal ID",
+                accessor: "animalId",
+            },
             {
                 Header: "Name",
                 accessor: "name", // accessor is the "key" in the data
             },
             {
                 Header: "Animal type",
-                accessor: "type",
+                accessor: "animalType",
             },
-            {
-                Header: "Animal ID",
-                accessor: "id",
-            },
+
             {
                 Header: "Status",
                 accessor: "status",
             },
             {
                 Header: "Admin Approval",
-                accessor: "admin",
+                accessor: "adminStatus",
             },
             {
-                Header: "Instructor Approval",
-                accessor: "instructor",
+                Header: "Technician Approval",
+                accessor: "technicianStatus",
             },
             {
-                Header: "Profile",
-                accessor: "profile",
+                Header: "Breed",
+                accessor: "breed",
+            },
+            {
+                Header: "Date of Birth",
+                accessor: "dob",
+            },
+            {
+                Header: "Health Status",
+                accessor: "healthStatus",
             },
         ],
         []

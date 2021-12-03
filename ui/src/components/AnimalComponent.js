@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,6 +6,10 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 // import reactDom from "react-dom";
 function Animal() {
+    // States
+    const [selectedAnimal, setSelectedAnimal] = useState(null);
+
+    // Styling stuffs
     const imgStyle = {
         width: "450px",
         height: "auto",
@@ -22,6 +26,7 @@ function Animal() {
     const tableheader = {
         width: "25%",
     };
+
     return (
         <React.Fragment>
             <Container>

@@ -22,7 +22,7 @@ public class AnimalController {
     public List<Animal> getAnimalList() {
         return dao.list();
     }
-
+    // For Specific animal (provide animal ID)
     @GetMapping()
     public Optional<Animal> getAnimal(@RequestParam(required = false, name="AnimalID") Integer animalId) {
         return dao.get(animalId);

@@ -63,19 +63,19 @@ const Header = ({ user, setUser }) => {
                     <ButtonGroup aria-label="Basic example">
                         <Button style={spacingrightButton} variant="flat">
                             <Link className="text-dark" to="/Home">
-                                Home Route
+                                Home
                             </Link>
                         </Button>
                         <Button variant="flat" style={spacingrightButton}>
                             <Link className="text-dark" to="/Animal">
-                                Animal Route
+                                Animal
                             </Link>
                         </Button>
                         <Logout setUser={setUser} />
                         {admin === true ? (
                             <Button variant="flat" style={spacingrightButton}>
                                 <Link className="text-dark" to="/Admin">
-                                    Admin Route
+                                    Admin
                                 </Link>
                             </Button>
                         ) : null}

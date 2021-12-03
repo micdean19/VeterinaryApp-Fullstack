@@ -9,12 +9,16 @@ import java.time.Period;
 public class Animal
 {
     private Integer animalId;
-    private String animalType;
     private String name;
+    private String animalType;
+    private String status;
+    private Integer adminStatus;
+    private Integer technicianStatus;
     private String breed;
     private LocalDate dob;
     private String healthStatus;
-    private Integer age;
+//    private Integer age;
+    // Add 3 attributes + their getters and setters
 
     public Animal() {
     }
@@ -43,13 +47,13 @@ public class Animal
         this.dob = dob;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge() {
-        this.age = Period.between(dob, LocalDate.now()).getYears();
-    }
+//    public Integer getAge() {
+//        return age;
+//    }
+//
+//    public void setAge() {
+//        this.age = Period.between(dob, LocalDate.now()).getYears();
+//    }
 
     public String getAnimalType() {
         return animalType;
@@ -84,7 +88,31 @@ public class Animal
                 ", breed='" + breed + '\'' +
                 ", dob=" + dob +
                 ", healthStatus='" + healthStatus + '\'' +
-                ", age=" + age +
+//                ", age=" + age +
                 '}';
     }
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Integer getAdminStatus() {
+		return adminStatus;
+	}
+
+	public void setAdminStatus(Integer adminStatus) {
+		this.adminStatus = adminStatus;
+	}
+
+	public Integer getTechnicianStatus() {
+		return technicianStatus;
+	}
+
+	public void setTechnicianStatus(Integer technicianStatus) {
+		this.technicianStatus = technicianStatus;
+	}
 }
