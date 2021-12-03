@@ -2,17 +2,21 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 
 function simulateNetworkRequest() {
-  return new Promise((resolve) => setTimeout(resolve, 500));
+  return new Promise((resolve) => setTimeout(resolve, 700));
 }
 
-const LoadingButton = ({ request }) => {
+const LoadingButton = ({ request, handleClose }) => {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isLoading) {
-      simulateNetworkRequest().then(() => {
-        setLoading(false);
-      });
+      simulateNetworkRequest()
+        .then(() => {
+          setLoading(false);
+        })
+        .then(() => {
+          handleClose();
+        });
     }
   }, [isLoading]);
 
@@ -34,7 +38,5 @@ const LoadingButton = ({ request }) => {
     </Button>
   );
 };
-
-// render(<LoadingButton />);
 
 export default LoadingButton;

@@ -20,7 +20,7 @@ const Logout = ({ setUser }) => {
     <>
       <Button variant="flat" onClick={handleShow}>
         {" "}
-        <Link className="text-dark">Logout Route</Link>
+        <Link className="text-dark">Logout</Link>
       </Button>
 
       <Modal show={show} onHide={handleClose}>

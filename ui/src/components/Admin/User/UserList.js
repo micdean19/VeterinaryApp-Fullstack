@@ -2,9 +2,16 @@ import React, { useEffect } from "react";
 import UserItem from "./UserItem";
 import Table from "react-bootstrap/Table";
 
-const UserList = ({ users, setSelectedUser }) => {
+const UserList = ({ reRender, setReRender, users, setSelectedUser }) => {
   const renderedList = users.map((user) => {
-    return <UserItem setSelectedUser={setSelectedUser} user={user} />;
+    return (
+      <UserItem
+        reRender={reRender}
+        setReRender={setReRender}
+        setSelectedUser={setSelectedUser}
+        user={user}
+      />
+    );
   });
 
   return (

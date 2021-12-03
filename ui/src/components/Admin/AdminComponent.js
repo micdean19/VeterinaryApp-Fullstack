@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import UserList from "./UserList";
+import UserList from "./User/UserList";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
@@ -8,6 +8,7 @@ const Admin = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [firstName, setFirst] = useState("");
   const [lastName, setLast] = useState("");
+  const [reRender, setReRender] = useState(false);
 
   useEffect(() => {
     const search = () => {
@@ -16,9 +17,8 @@ const Admin = () => {
       let params = {};
       let headers = {};
 
-      if (firstName != "" || lastName != "") {
+      if (firstName !== "" || lastName !== "") {
         endpoint = "/searchName";
-        console.log("searching");
         params = {
           firstName: firstName,
           lastName: lastName,
@@ -64,16 +64,17 @@ const Admin = () => {
     return () => {
       clearTimeout(id);
     };
-  }, [firstName, lastName]);
+  }, [firstName, lastName, reRender]);
 
   return (
     <div className="ui container">
       <InputGroup className="mb-3">
-        <InputGroup.Text>First and last name</InputGroup.Text>
+        <InputGroup.Text>First Name</InputGroup.Text>
         <FormControl
           aria-label="First name"
           onChange={(e) => setFirst(e.target.value)}
         />
+        <InputGroup.Text>Last name</InputGroup.Text>
         <FormControl
           aria-label="Last name"
           onChange={(e) => {
@@ -85,7 +86,12 @@ const Admin = () => {
       <div className="ui grid">
         <div className="ui row">
           <div className="five wide column">
-            <UserList setSelectedUser={setSelectedUser} users={users} />
+            <UserList
+              reRender={reRender}
+              setReRender={setReRender}
+              setSelectedUser={setSelectedUser}
+              users={users}
+            />
           </div>
         </div>
       </div>

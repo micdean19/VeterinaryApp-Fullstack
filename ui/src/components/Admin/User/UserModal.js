@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Modal, FloatingLabel, Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import LoadingButton from "./LoadingButton";
+import LoadingButton from "../../Fancy/LoadingButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
-const UserManagement = ({ show, setShow, user }) => {
+const UserManagement = ({ show, setShow, user, reRender, setReRender }) => {
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
   const [firstName, setFirstName] = useState(user.firstName);
@@ -61,24 +61,31 @@ const UserManagement = ({ show, setShow, user }) => {
 
   const sendUpdate = () => {
     var axios = require("axios");
+    var FormData = require("form-data");
+    var data = new FormData();
+
+    data.append("username", username);
+    data.append("password", password);
+    data.append("Email", email);
+    data.append("firstName", firstName);
+    data.append("lastName", lastName);
+    data.append("other", user.other);
+    data.append("accessLevel", accessLevel);
 
     var config = {
-      method: "post",
-      url: "http://localhost:8080/update-user",
+      method: "put",
+      url: "http://localhost:8080/user-management",
       headers: {},
-      data: {
-        username: username,
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        password: password,
-        accessLevel: accessLevel,
+      params: {
+        UserID: user.userId,
       },
+      data: data,
     };
 
     axios(config)
       .then((response) => {
         console.log(response);
+        setReRender(!reRender);
       })
       .catch(function (error) {
         console.log(error);
@@ -126,7 +133,7 @@ const UserManagement = ({ show, setShow, user }) => {
         </FloatingLabel>
         <FloatingLabel
           controlId="floatingTextarea"
-          label="Email"
+          label="Last Name"
           className="mb-3"
         >
           <Form.Control
@@ -161,7 +168,9 @@ const UserManagement = ({ show, setShow, user }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <LoadingButton onClick={handleClose}>Save Changes</LoadingButton>
+          <LoadingButton handleClose={handleClose} request={sendUpdate}>
+            Save Changes
+          </LoadingButton>
           {/* <Button variant="primary" onClick={console.log("yo")}>
             Confirm
           </Button> */}

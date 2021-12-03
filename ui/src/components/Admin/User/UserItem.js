@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import UserManagement from "./UserModal";
 
-const UserItem = ({ user, setSelectedUser }) => {
+const UserItem = ({ reRender, setReRender, user, setSelectedUser }) => {
   const [show, setShow] = useState(false);
 
   const ButtonClick = () => {
@@ -17,11 +17,19 @@ const UserItem = ({ user, setSelectedUser }) => {
       <td>{user.email}</td>
       <td>{user.firstName}</td>
       <td>{user.lastName}</td>
-      <td>{user.accessLevel}</td>
       <td>
-        <Button onClick={ButtonClick}>SOME BUTTON</Button>
+        {user.accessLevel.charAt(0) + user.accessLevel.slice(1).toLowerCase()}
+      </td>
+      <td>
+        <Button onClick={ButtonClick}>Edit User</Button>
         {show ? (
-          <UserManagement user={user} show={show} setShow={setShow} />
+          <UserManagement
+            reRender={reRender}
+            setReRender={setReRender}
+            user={user}
+            show={show}
+            setShow={setShow}
+          />
         ) : null}
       </td>
     </tr>
