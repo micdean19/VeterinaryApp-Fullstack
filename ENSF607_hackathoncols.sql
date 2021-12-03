@@ -116,7 +116,8 @@ INSERT INTO ANIMAL
 VALUES
     (1001,'Scott', 'Dog', 'Available', '1000', '1000', 'German Shepard','2019-12-12', 'Healthy'),
     (1002,'Mia', 'Cat',  'Pending', '1004', '1000', 'A brownish type', '2019-12-12', 'Sick'),
-    (1003,'Maddy', 'Cat', 'Approved', '1004', '1005', 'A brownish type', '2019-12-12', 'Healthy');
+    (1003,'Maddy', 'Cat', 'Approved', '1004', '1005', 'A brownish type', '2019-12-12', 'Healthy'),
+    (1004,'Maddy', 'Cat', 'Available', '1000', '1000', 'A red type', '2019-12-12', 'Healthy');
 
 
 DROP TABLE IF EXISTS Appointments;
@@ -143,7 +144,7 @@ CREATE TABLE PRIMARYCARE(
 INSERT INTO ADMIN
 VALUES
 	(1000,4),
-    (1002, 4),
+    (1002,4),
 	(1004,4);
 
 -- Making Alex a vet
