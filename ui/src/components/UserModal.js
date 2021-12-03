@@ -59,8 +59,30 @@ const UserManagement = ({ show, setShow, user }) => {
     );
   });
 
-  const simulateNetworkRequest = () => {
-    return new Promise((resolve) => setTimeout(resolve, 2000));
+  const sendUpdate = () => {
+    var axios = require("axios");
+
+    var config = {
+      method: "post",
+      url: "http://localhost:8080/update-user",
+      headers: {},
+      data: {
+        username: username,
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        password: password,
+        accessLevel: accessLevel,
+      },
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -140,9 +162,9 @@ const UserManagement = ({ show, setShow, user }) => {
             Close
           </Button>
           <LoadingButton onClick={handleClose}>Save Changes</LoadingButton>
-          <Button variant="primary" onClick={console.log("yo")}>
+          {/* <Button variant="primary" onClick={console.log("yo")}>
             Confirm
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </>
