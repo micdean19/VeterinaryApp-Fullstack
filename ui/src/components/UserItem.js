@@ -1,10 +1,13 @@
-import React from "react";
-import { Row } from "react-bootstrap";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import UserManagement from "./UserModal";
 
 const UserItem = ({ user, setSelectedUser }) => {
+  const [show, setShow] = useState(false);
+
   const ButtonClick = () => {
     setSelectedUser(user);
+    setShow(true);
     console.log("UserItem: ", user);
   };
 
@@ -17,6 +20,9 @@ const UserItem = ({ user, setSelectedUser }) => {
       <td>{user.accessLevel}</td>
       <td>
         <Button onClick={ButtonClick}>SOME BUTTON</Button>
+        {show ? (
+          <UserManagement user={user} show={show} setShow={setShow} />
+        ) : null}
       </td>
     </tr>
   );
