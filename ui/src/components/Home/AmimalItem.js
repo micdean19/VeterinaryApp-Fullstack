@@ -9,11 +9,6 @@ const AnimalItem = ({ reRender, setReRender, animal, setSelectedAnimal }) => {
   const ButtonClick = () => {
     setSelectedAnimal(animal);
     setShow(true);
-    console.log("UserItem: ", animal);
-
-    // return (
-
-    // );
   };
 
   return (
