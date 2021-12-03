@@ -2,6 +2,30 @@ DROP DATABASE IF EXISTS ensf607_vet_mockdb;
 CREATE DATABASE ensf607_vet_mockdb;
 USE ensf607_vet_mockdb;
 
+DROP TABLE IF EXISTS ROLE_TYPE;
+CREATE TABLE ROLE_TYPE
+(
+    RoleName			VARCHAR(20)				NOT NULL,
+    PRIMARY KEY(RoleName));
+
+INSERT INTO ROLE_TYPE VALUE
+    ('ADMIN'),
+    ('TECHNICIAN'),
+    ('INSTRUCTOR'),
+    ('STUDENT'),
+    ('VET');
+
+DROP TABLE IF EXISTS ANIMAL_TYPE;
+CREATE TABLE ANIMAL_TYPE
+(
+    AnimalType			VARCHAR(20)				NOT NULL,
+    PRIMARY KEY(AnimalType));
+
+INSERT INTO ANIMAL_TYPE VALUE
+    ('CAT'),
+    ('DOG'),
+    ('HORSE');
+
 DROP TABLE IF EXISTS ANIMAL;
 CREATE TABLE ANIMAL
 (
@@ -11,9 +35,16 @@ CREATE TABLE ANIMAL
     Breed			VARCHAR(20)		    NOT NULL,
     Dob				DATE				Not Null,
     HealthStatus	VARCHAR(20) 	    NOT NULL,
-    PRIMARY KEY (AnimalID)
+    PRIMARY KEY (AnimalID)                      ,
+    FOREIGN KEY(AnimalType) REFERENCES ANIMAL_TYPE(AnimalType)
 )AUTO_INCREMENT=1000;
 # add gender
+
+-- Inserting Values.
+INSERT INTO ANIMAL
+VALUES
+    (1001,'DOG', 'Scott', 'German Sherperd', '2019-12-12', 'In good Shape'),
+    (1002,'CAT', 'Mia', 'brownish type', '2019-12-12', 'Sick');
 
 DROP TABLE IF EXISTS USERS;
 CREATE TABLE USERS
@@ -25,8 +56,16 @@ CREATE TABLE USERS
     Fname			VARCHAR(20)		    NOT NULL,
     Lname			VARCHAR(20)		    NOT NULL,
     OtherStuffs		VARCHAR(50)		    NOT NULL, 				-- Placeholder
-    PRIMARY KEY(UserID))
+    AccessLevel     VARCHAR(50)		    NOT NULL,
+    PRIMARY KEY(UserID),
+    FOREIGN KEY(AccessLevel) REFERENCES ROLE_TYPE(RoleName))
     AUTO_INCREMENT=1000;
+
+INSERT INTO USERS
+VALUES
+    (1001, 'Mike19', 'milk', 'mic.19@hotmail.com', 'Michael', 'Ah', 'Hello this is a comment', 'INSTRUCTOR'),
+    (1002, 'Aleakos', 'juice', 'aleakos@hotmail.com', 'Alex', 'Leakos', '....', 'ADMIN');
+
 
 DROP TABLE IF EXISTS HealthPeople;
 CREATE TABLE HealthPeople
@@ -86,18 +125,6 @@ CREATE TABLE PRIMARYCARE(
                             FOREIGN KEY(UserID) REFERENCES USERS(UserID),
                             FOREIGN KEY(AnimalID) REFERENCES ANIMAL(AnimalID));
 
-
-
--- Inserting Values.
-INSERT INTO ANIMAL
-VALUES
-    (1001,'DOG', 'Scott', 'German Sherperd', '2019-12-12', 'In good Shape'),
-    (1002,'CAT', 'Mia', 'brownish type', '2019-12-12', 'Sick');
-
-INSERT INTO USERS
-VALUES
-    (1001, 'Mike19', 'milk', 'mic.19@hotmail.com', 'Michael', 'Ah', 'Hello this is a comment'),
-    (1002, 'Aleakos', 'juice', 'aleakos@hotmail.com', 'Alex', 'Leakos', '....');
 
 -- Makign alex an admin
 INSERT INTO ADMIN

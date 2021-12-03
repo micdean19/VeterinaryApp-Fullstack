@@ -23,6 +23,7 @@ public class UserDAO implements DAO<User> {
         user.setFirstName(rs.getString("Fname"));
         user.setLastName(rs.getString("Lname"));
         user.setEmail(rs.getString("Email"));
+        user.setAccessLevel(rs.getString("AccessLevel"));
         return user;
     };
 
@@ -33,7 +34,7 @@ public class UserDAO implements DAO<User> {
     @Override
     public List<User> list() {
         String sql =
-                "SELECT USERS.UserID, Username, Password, Email, Fname, Lname, OtherStuffs FROM USERS";
+                "SELECT UserID, Username, Password, Email, Fname, Lname, OtherStuffs, AccessLevel FROM USERS";
         return jdbcTemplate.query(sql,rowMapper);
     }
 
@@ -47,8 +48,9 @@ public class UserDAO implements DAO<User> {
                         "Email, " +
                         "Fname, " +
                         "Lname, " +
-                        "OtherStuffs) " +
-                        "VALUES(?,?,?,?,?,?)";
+                        "OtherStuffs, " +
+                        "AccessLevel) " +
+                        "VALUES(?,?,?,?,?,?,?)";
         int insert = jdbcTemplate.update(
                 sql,
                 user.getUsername(),
@@ -56,7 +58,8 @@ public class UserDAO implements DAO<User> {
                 user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),
-                user.getOther()
+                user.getOther(),
+                user.getAccessLevel()
         );
         if(insert == 1){
             log.info("New user created: " + user.getUsername());
@@ -70,13 +73,14 @@ public class UserDAO implements DAO<User> {
     public Optional<User> get(int id) {
         String sql =
                 "SELECT " +
-                        "USERS.UserID, " +
+                        "UserID, " +
                         "Username, " +
                         "Password, " +
                         "Email, " +
                         "Fname, " +
                         "Lname, " +
-                        "OtherStuffs " +
+                        "OtherStuffs, " +
+                        "AccessLevel " +
                         "FROM USERS " +
                         "WHERE USERS.UserID = ?";
 
@@ -99,6 +103,69 @@ public class UserDAO implements DAO<User> {
     @Override
     public void delete(int id) {
 
+    }
+
+    public Optional<User> verifyUser(String username, String password) {
+        String sql =
+                "SELECT " +
+                        "UserID, " +
+                        "Username, " +
+                        "Password, " +
+                        "Email, " +
+                        "Fname, " +
+                        "Lname, " +
+                        "OtherStuffs, " +
+                        "AccessLevel " +
+                        "FROM USERS " +
+                        "WHERE Email = ?"
+                        + "AND Password = ?";
+
+        User user = null;
+
+        try{
+            List<User> users = jdbcTemplate.query(sql, rowMapper, username, password);
+            user = users.get(0);
+        } catch (IndexOutOfBoundsException ex) {
+            log.info(username + " not found");
+        }
+        return Optional.ofNullable(user);
+    }
+
+    public List<User> getByName(String firstName, String lastName) {
+        if (firstName == null)
+            firstName = "";
+
+        firstName = "%" + firstName + "%";
+
+        if (lastName == null)
+            lastName = "";
+
+        lastName = "%" + lastName + "%";
+
+
+        String sql =
+                "SELECT " +
+                        "UserID, " +
+                        "Username, " +
+                        "Password, " +
+                        "Email, " +
+                        "Fname, " +
+                        "Lname, " +
+                        "OtherStuffs, " +
+                        "AccessLevel " +
+                        "FROM USERS " +
+                        "WHERE Fname LIKE ?"
+                        + "AND Lname LIKE ?";
+
+        User user = null;
+
+        try{
+            List<User> users = jdbcTemplate.query(sql, rowMapper, firstName, lastName);
+            return users;
+        } catch (IndexOutOfBoundsException ex) {
+            log.info(firstName + " " + lastName+ " not found");
+            return null;
+        }
     }
 
     // passing connection parameters

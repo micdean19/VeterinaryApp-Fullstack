@@ -1,5 +1,6 @@
 package com.p196.db.model;
 
+import com.nimbusds.jose.shaded.json.JSONObject;
 import org.apache.tomcat.jni.Local;
 
 import java.beans.Transient;
@@ -9,12 +10,16 @@ import java.time.Period;
 public class Animal
 {
     private Integer animalId;
-    private String animalType;
     private String name;
+    private String animalType;
+    private String status;
+    private Integer adminStatus;
+    private Integer technicianStatus;
     private String breed;
     private LocalDate dob;
     private String healthStatus;
     private Integer age;
+    // Add 3 attributes + their getters and setters
 
     public Animal() {
     }
@@ -87,4 +92,40 @@ public class Animal
                 ", age=" + age +
                 '}';
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("animalId", animalId);
+        json.put("animalType", animalType);
+        json.put("name", name);
+        json.put("breed", breed);
+        json.put("dob", dob);
+        json.put("healthStatus", healthStatus);
+        json.put("age", age);
+        return json;
+    }
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Integer getAdminStatus() {
+		return adminStatus;
+	}
+
+	public void setAdminStatus(Integer adminStatus) {
+		this.adminStatus = adminStatus;
+	}
+
+	public Integer getTechnicianStatus() {
+		return technicianStatus;
+	}
+
+	public void setTechnicianStatus(Integer technicianStatus) {
+		this.technicianStatus = technicianStatus;
+	}
 }

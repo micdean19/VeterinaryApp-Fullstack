@@ -19,27 +19,34 @@ public class AnimalDAO implements DAO<Animal>{
     public AnimalDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
+    // Map has to match model. 
     RowMapper<Animal> rowMapper = (rs, rowNum) -> {
         Animal animal = new Animal();
         animal.setAnimalId(rs.getInt("AnimalID"));
-        animal.setAnimalType(rs.getString("AnimalType"));
         animal.setName(rs.getString("Name"));
+        animal.setAnimalType(rs.getString("AnimalType"));
+        animal.setStatus(rs.getString("Status"));
+        animal.setAdminStatus(rs.getInt("AdminStatus"));
+        animal.setTechnicianStatus(rs.getInt("TechnicianStatus"));
         animal.setBreed(rs.getString("Breed"));
         animal.setDob(rs.getDate("Dob").toLocalDate());
         animal.setHealthStatus(rs.getString("HealthStatus"));
         animal.setAge();
+        // animal set Status
+        //animal set Admin approval
+        //animal set instructor approval
         return animal;
     };
 
     @Override
     public List<Animal> list() {
         String sql =
-                "SELECT AnimalID, AnimalType, Name, Breed, Dob, HealthStatus FROM ANIMAL";
+                "SELECT AnimalID, Name, AnimalType, Status, AdminStatus, TechnicianStatus, Breed, Dob, HealthStatus FROM ANIMAL";
         return jdbcTemplate.query(sql,rowMapper);
-    }
+    } 
 
     @Override
+    // TO DO: Update this sql (based on added animal status + technician status)
     public void create(Animal animal) {
         String sql =
                 "INSERT " +
@@ -65,6 +72,7 @@ public class AnimalDAO implements DAO<Animal>{
     }
 
     @Override
+    // TO DO: Update this sql (based on added animal status + technician status)
     public Optional<Animal> get(int id) {
         String sql =
                 "SELECT " +
@@ -88,6 +96,7 @@ public class AnimalDAO implements DAO<Animal>{
     }
 
     @Override
+    // TO DO: Update this sql (based on added animal status + technician status)
     public void update(Animal animal, int animalID) {
         System.out.println(animal);
         String sql =
