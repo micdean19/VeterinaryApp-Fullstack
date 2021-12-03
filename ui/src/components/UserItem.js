@@ -1,8 +1,16 @@
-import React from "react";
-import { Row } from "react-bootstrap";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import UserManagement from "./UserModal";
 
-const UserItem = ({ user, onUserSelect }) => {
+const UserItem = ({ user, setSelectedUser }) => {
+  const [show, setShow] = useState(false);
+
+  const ButtonClick = () => {
+    setSelectedUser(user);
+    setShow(true);
+    console.log("UserItem: ", user);
+  };
+
   return (
     <tr>
       <td>{user.username}</td>
@@ -11,15 +19,13 @@ const UserItem = ({ user, onUserSelect }) => {
       <td>{user.lastName}</td>
       <td>{user.accessLevel}</td>
       <td>
-        <Button onClick={() => onUserSelect(user)}>SOME BUTTON</Button>
+        <Button onClick={ButtonClick}>SOME BUTTON</Button>
+        {show ? (
+          <UserManagement user={user} show={show} setShow={setShow} />
+        ) : null}
       </td>
     </tr>
   );
-
-  // <div onClick={() => onUserSelect(user)}>
-  //   <div className="content">User ITEM</div>
-  // </div>
-  //   );
 };
 
 export default UserItem;

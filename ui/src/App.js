@@ -1,5 +1,6 @@
 // You have to import any css or components to be used here
 import "bootstrap/dist/css/bootstrap.min.css";
+import LoadingButton from "./components/LoadingButton";
 import "./App.css";
 
 import React, { useEffect, useState } from "react";

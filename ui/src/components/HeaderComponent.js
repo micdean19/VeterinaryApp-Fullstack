@@ -40,7 +40,7 @@ const Header = ({ user, setUser }) => {
     }, [user]);
 
     const checkAdmin = () => {
-        if (user && user.accessLevel === "admin") {
+        if (user && user.accessLevel === "ADMIN") {
             setAdmin(true);
         } else {
             setAdmin(false);
