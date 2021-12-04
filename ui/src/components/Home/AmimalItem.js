@@ -49,7 +49,7 @@ const AnimalItem = ({
       //lock button
       return (
         <Button variant="secondary" disabled>
-          Request
+          {animal.status}
         </Button>
       );
     }
