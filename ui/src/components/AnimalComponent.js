@@ -65,7 +65,7 @@ const Animal = (props) => {
             <Col>
               <img
                 style={imgStyle}
-                src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350"
+                src={animal.image}
                 // src="https://dogtime.com/assets/uploads/2019/05/alaskan-malamute-puppy-1-1280x720.jpg"
                 alt="new"
               />

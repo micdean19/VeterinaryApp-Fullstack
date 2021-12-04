@@ -27,12 +27,12 @@ public class AnimalDAO implements DAO<Animal>{
         animal.setName(rs.getString("Name"));
         animal.setAnimalType(rs.getString("AnimalType"));
         animal.setStatus(rs.getString("Status"));
-        animal.setAdminStatus(rs.getString("Admin Name"));
-        animal.setTechnicianStatus(rs.getString("Technician Name"));
+        animal.setAdminStatus(rs.getString("AdminStatus"));
+        animal.setTechnicianStatus(rs.getString("TechnicianStatus"));
         animal.setBreed(rs.getString("Breed"));
         animal.setDob(rs.getDate("Dob").toLocalDate());
         animal.setHealthStatus(rs.getString("HealthStatus"));
-        animal.setImage(rs.getString("img"));
+        animal.setImage(rs.getString("ImageLink"));
         animal.setAge();
         // animal set Status
         //animal set Admin approval
@@ -43,7 +43,7 @@ public class AnimalDAO implements DAO<Animal>{
     @Override
     public List<Animal> list() {
         String sql =
-                "SELECT a.AnimalID, a.Name, a.AnimalType, a.Status, u.Fname as 'Admin Name', u2.Fname as 'Technician Name', a.Breed, a.Dob, a.HealthStatus, a.ImageLink as img\r\n"
+                "SELECT a.AnimalID, a.Name, a.AnimalType, a.Status, u.Fname as 'AdminStatus', u2.Fname as 'TechnicianStatus', a.Breed, a.Dob, a.HealthStatus, a.ImageLink\r\n"
                 + "FROM ANIMAL as a, USERS as u, USERS as u2\r\n"
                 + "WHERE a.AdminStatus = u.UserID\r\n"
                 + "AND a.TechnicianStatus = u2.UserID";
@@ -89,7 +89,8 @@ public class AnimalDAO implements DAO<Animal>{
                         "TechnicianStatus, " +
                         "Breed, " +
                         "Dob, " +
-                        "HealthStatus " +
+                        "HealthStatus, " +
+                        "ImageLink " +
                         "FROM " +
                         "ANIMAL " +
                         "WHERE AnimalID = ?";
@@ -118,7 +119,8 @@ public class AnimalDAO implements DAO<Animal>{
                         "TechnicianStatus, " +
                         "Breed, " +
                         "Dob, " +
-                        "HealthStatus " +
+                        "HealthStatus, " +
+                        "ImageLink " +
                         "FROM ANIMAL " +
                         "WHERE Name LIKE ?";
 
