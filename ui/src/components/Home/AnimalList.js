@@ -2,7 +2,13 @@ import React, { useEffect } from "react";
 import AnimalItem from "./AmimalItem";
 import Table from "react-bootstrap/Table";
 
-const AnimalList = ({ reRender, setReRender, animals, setSelectedAnimal }) => {
+const AnimalList = ({
+  reRender,
+  setReRender,
+  animals,
+  setSelectedAnimal,
+  user,
+}) => {
   const renderedList = animals.map((animal) => {
     return (
       <AnimalItem
@@ -10,6 +16,7 @@ const AnimalList = ({ reRender, setReRender, animals, setSelectedAnimal }) => {
         setReRender={setReRender}
         setSelectedAnimal={setSelectedAnimal}
         animal={animal}
+        user={user}
       />
     );
   });
@@ -23,10 +30,11 @@ const AnimalList = ({ reRender, setReRender, animals, setSelectedAnimal }) => {
           <th>Breed</th>
           <th>DOB</th>
           <th>Health</th>
-          <th>Age</th>
+          {/* <th>Age</th> */}
           <th>Status</th>
           <th>Admin Approval</th>
           <th>Technician Approval</th>
+          <th>Request</th>
           <th>Profile</th>
         </tr>
       </thead>
