@@ -19,19 +19,20 @@ public class AnimalController {
         this.dao = dao;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping(path = "/all")
     public List<Animal> getAnimalList() {
         return dao.list();
     }
+
     // For Specific animal (provide animal ID)
     @GetMapping()
-    public Optional<Animal> getAnimal(@RequestParam(required = false, name="AnimalID") Integer animalId) {
+    public Optional<Animal> getAnimal(@RequestParam(required = false, name = "AnimalID") Integer animalId) {
         return dao.get(animalId);
     }
 
-    @GetMapping(path="/searchName")
+    @GetMapping(path = "/searchName")
     public List<Animal> getbyAnimalName(
-            @RequestParam(required = false, name="name") String name){
+            @RequestParam(required = false, name = "name") String name) {
         if (name == null) {
             return null;
         }
@@ -46,17 +47,32 @@ public class AnimalController {
     }
 
     @DeleteMapping()
-    public String deleteAnimal(@RequestParam(required = false, name="AnimalID") Integer animalId) {
+    public String deleteAnimal(@RequestParam(required = false, name = "AnimalID") Integer animalId) {
         // will throw FK constraint violation
 //        dao.delete(animalId);
         return "Deleted successfully";
     }
 
+    @CrossOrigin
     @PutMapping()
     public String updateAnimal(@ModelAttribute Animal animal,
-                             @RequestParam(required = false, name="AnimalID") Integer animalId){
+                               @RequestParam(required = false, name = "AnimalID") Integer animalId) {
         dao.update(animal, animalId);
         return "Updated successfully";
     }
 
+    @CrossOrigin
+    @PutMapping(path = "/status")
+    public String updateStatus(@RequestParam(required = false, name = "AnimalID") Integer animalId,
+                               @RequestParam(required = false, name = "AccessLevel") String role,
+                               @RequestParam(required = false, name = "UserID") Integer userId,
+                               @RequestParam(required = false, name = "Status") Boolean status) {
+
+        {
+            if (dao.updateStatus(animalId, userId, role, status))
+                return "Updated successfully";
+            else
+                return "Update failed";
+        }
+    }
 }

@@ -168,4 +168,105 @@ public class AnimalDAO implements DAO<Animal>{
                         "WHERE AnimalID = ?";
         jdbcTemplate.update(sql, animalId);
     }
+
+    public boolean updateStatus(Integer animalId, Integer userId, String role, Boolean status) {
+        String statusString = "";
+        try {
+            // UPDATE status to "Pending"
+            if (role.equals("INSTRUCTOR") && animalAvailable(animalId)) {
+                if (status) {
+                    statusString = "Pending";
+                } else {
+                    statusString = "Denied";
+                }
+                String sql =
+                        "UPDATE ANIMAL " +
+                                "SET " +
+                                "Status = ? " +
+                                "WHERE AnimalID = ?";
+                jdbcTemplate.update(
+                        sql, statusString, animalId);
+                return true;
+            }
+            // UPDATE AdminStatus to userId
+            if (role.equals("ADMIN") && checkAdminFree(animalId)) {
+                if (status) {
+                    statusString = "Pending";
+                } else {
+                    statusString = "Denied";
+                }
+                String sql =
+                        "UPDATE ANIMAL " +
+                                "SET " +
+                                "Status = ?, " +
+                                "AdminStatus = ? " +
+                                "WHERE AnimalID = ?";
+                jdbcTemplate.update(
+                        sql, statusString, userId, animalId);
+                return true;
+            }
+            // UPDATE TechnicianStatus to userId
+            if (role.equals("TECHNICIAN") && checkTechFree(animalId)) {
+                if (status) {
+                    statusString = "Approved";
+                } else {
+                    statusString = "Denied";
+                }
+                String sql =
+                        "UPDATE ANIMAL " +
+                                "SET " +
+                                "Status = ?, " +
+                                "TechnicianStatus = ? " +
+                                "WHERE AnimalID = ?";
+                jdbcTemplate.update(
+                        sql, statusString, userId, animalId);
+                return true;
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getCause());
+            return false;
+        }
+        return false;
+    }
+
+    public boolean animalAvailable(Integer animalId) {
+        // check if AdminStatus == 1000 and TechnicianStatus == 1000 in db if it is free we can update
+        String sql =
+                "SELECT IF(EXISTS(SELECT 1 FROM ANIMAL\n" +
+                        "WHERE AnimalID = ?\n" +
+                        "AND AdminStatus = 1000\n" +
+                        "AND TechnicianStatus = 1000\n" +
+                        "AND Status = 'Available'),1,0) AS result;";
+        int result = jdbcTemplate.queryForObject(sql, Integer.class, animalId);
+
+        return result == 1;
+
+    }
+
+    public boolean checkAdminFree(Integer animalId) {
+        // check if AdminStatus == 1000 AND Status is Pending return 1 if true
+        String sql =
+                "SELECT IF(EXISTS(SELECT 1 FROM ANIMAL\n" +
+                        "WHERE AnimalID = ?\n" +
+                        "AND AdminStatus = 1000\n" +
+                        "AND Status = 'Pending'),1,0) AS result;";
+        int result = jdbcTemplate.queryForObject(sql, Integer.class, animalId);
+        return result == 1;
+    }
+
+    public boolean checkTechFree(Integer animalId) {
+        // check if AdminStatus != 1000 and TechnicianStatus == 1000 in db if it is free we can update
+        String sql =
+                "SELECT IF(EXISTS(SELECT 1 FROM ANIMAL\n" +
+                        "WHERE AnimalID = ?\n" +
+                        "AND AdminStatus != 1000\n" +
+                        "AND TechnicianStatus = 1000\n" +
+                        "AND Status = 'Pending'),1,0) AS result;";
+        int result = jdbcTemplate.queryForObject(sql, Integer.class, animalId);
+        return result == 1;
+    }
+
 }
+
+

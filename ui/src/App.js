@@ -9,7 +9,7 @@ import { Form, Col, Container, Button } from "react-bootstrap";
 import Main from "./components/MainComponent";
 import Logout from "./components/Admin/LogoutComponent";
 
-// Using this because we are using router, we need to wrap eveyrhting
+// Using this because we are using router, we need to wrap everything
 import { BrowserRouter } from "react-router-dom";
 
 const h2syling = {
@@ -25,8 +25,6 @@ function App() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
-      // const foundUser = loggedInUser;
-      // was causing json error
       const foundUser = JSON.parse(loggedInUser);
       setUser(foundUser);
     }
