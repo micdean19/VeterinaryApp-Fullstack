@@ -3,7 +3,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import AnimalList from "./AnimalList";
 
-const Animals = () => {
+const Animals = ({ user }) => {
   const [animals, setAnimals] = useState([]);
   const [selectedAnimal, setSelectedAnimal] = useState(null);
   const [animalName, setAnimalName] = useState("");
@@ -80,6 +80,7 @@ const Animals = () => {
               setReRender={setReRender}
               setSelectedAnimal={setSelectedAnimal}
               animals={animals}
+              user={user}
             />
           </div>
         </div>

@@ -65,12 +65,11 @@ const Header = ({ user, setUser }) => {
                 Home
               </Link>
             </Button>
-            <Button variant="flat" style={spacingrightButton}>
+            {/* <Button variant="flat" style={spacingrightButton}>
               <Link className="text-dark" to="/Animal">
                 Animal
               </Link>
-            </Button>
-            <Logout setUser={setUser} />
+            </Button> */}
             {admin === true ? (
               <Button variant="flat" style={spacingrightButton}>
                 <Link className="text-dark" to="/Admin">
@@ -78,6 +77,7 @@ const Header = ({ user, setUser }) => {
                 </Link>
               </Button>
             ) : null}
+            <Logout setUser={setUser} />
           </ButtonGroup>
         </Col>
       </Row>
