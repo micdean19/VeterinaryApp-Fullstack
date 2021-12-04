@@ -134,14 +134,10 @@ public class UserDAO implements DAO<User> {
     public List<User> getByName(String firstName, String lastName) {
         if (firstName == null)
             firstName = "";
-
         firstName = "%" + firstName + "%";
-
         if (lastName == null)
             lastName = "";
-
         lastName = "%" + lastName + "%";
-
 
         String sql =
                 "SELECT " +
