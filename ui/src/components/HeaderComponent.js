@@ -65,11 +65,11 @@ const Header = ({ user, setUser }) => {
                 Home
               </Link>
             </Button>
-            {/* <Button variant="flat" style={spacingrightButton}>
-              <Link className="text-dark" to="/Animal">
-                Animal
+            <Button variant="flat" style={spacingrightButton}>
+              <Link className="text-dark" to="/Requests">
+                Requests
               </Link>
-            </Button> */}
+            </Button>
             {admin === true ? (
               <Button variant="flat" style={spacingrightButton}>
                 <Link className="text-dark" to="/Admin">

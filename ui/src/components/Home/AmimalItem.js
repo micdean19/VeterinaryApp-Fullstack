@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, BrowserRouter, Link } from "react-router-dom";
 import Animal from "../AnimalComponent";
 import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
-const AnimalItem = ({
-  reRender,
-  setReRender,
-  animal,
-  setSelectedAnimal,
-  user,
-}) => {
-  const [show, setShow] = useState(false);
+const AnimalItem = ({ animal, setSelectedAnimal, reRender, setReRender }) => {
+  const [user, setUser] = useState();
 
-  const ButtonClick = () => {
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
+
+  const ButtonRedirect = () => {
     setSelectedAnimal(animal);
-    setShow(true);
+  };
+
+  const ApprovalButton = () => {
+    if (user) {
+      updateStatus("APPROVED");
+    }
+  };
+
+  const RejectButton = () => {
+    if (user) {
+      updateStatus("REJECTED");
+    }
   };
 
   // unsure if this covers all cases
@@ -22,22 +36,44 @@ const AnimalItem = ({
     console.log(animal);
     if (animal.status === "Available" && user.accessLevel === "INSTRUCTOR") {
       console.log("in instructor");
-      return <Button variant="success">Request</Button>;
+      return (
+        <Button variant="success" onClick={ApprovalButton}>
+          Request
+        </Button>
+      );
     } else if (
       animal.status === "Pending" &&
       user.accessLevel === "ADMIN" &&
-      animal.adminStatus !== 1000
+      animal.adminStatus === "null"
     ) {
       console.log("in admin");
-      return <Button variant="success">Approve</Button>;
+      return (
+        <ButtonGroup vertical>
+          <Button variant="success mb-1" onClick={ApprovalButton}>
+            Approve
+          </Button>
+          <Button variant="danger" onClick={RejectButton}>
+            Deny
+          </Button>
+        </ButtonGroup>
+      );
     } else if (
       animal.status === "Pending" &&
       user.accessLevel === "TECHNICIAN" &&
-      animal.adminStatus !== 1000 &&
-      animal.technicianStatus !== 1000
+      animal.adminStatus !== "null" &&
+      animal.technicianStatus === "null"
     ) {
       console.log("in admin");
-      return <Button variant="success">Approve</Button>;
+      return (
+        <ButtonGroup vertical>
+          <Button variant="success mb-1" onClick={ApprovalButton}>
+            Approve
+          </Button>
+          <Button variant="danger" onClick={RejectButton}>
+            Deny
+          </Button>
+        </ButtonGroup>
+      );
     } else if (animal.status === "Approved") {
       console.log("in admin");
       return (
@@ -55,33 +91,101 @@ const AnimalItem = ({
     }
   };
 
-  return (
-    <tr>
-      <td>{animal.name}</td>
-      <td>
-        {animal.animalType.charAt(0) + animal.animalType.slice(1).toLowerCase()}
-      </td>
-      <td>{animal.breed}</td>
-      <td>{animal.dob}</td>
-      <td>{animal.healthStatus}</td>
-      {/* <td>{animal.age}</td> */}
-      <td>{animal.status}</td>
-      <td>{animal.adminStatus}</td>
-      <td>{animal.technicianStatus}</td>
-      <td>{approveStatusButton()}</td>
-      <td>
-        <Link
-          onClick={ButtonClick}
-          to={`/Animal/${animal.animalId}`}
-          key={animal.animalId}
-        >
-          <Button variant="primary">View</Button>
-        </Link>
-      </td>
+  const updateStatus = (status) => {
+    status === "APPROVED" ? (status = true) : (status = false);
 
-      {/* this could link to a page? */}
-    </tr>
-  );
+    var axios = require("axios");
+    var FormData = require("form-data");
+    var data = new FormData();
+
+    let params = {
+      AnimalID: animal.animalId,
+      AccessLevel: user.accessLevel,
+      UserID: user.userId,
+      Status: status,
+    };
+
+    var config = {
+      method: "put",
+      url: "http://localhost:8080/animal-management/status",
+      headers: {},
+      params: params,
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .then(setReRender(!reRender))
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  if (user) {
+    return (
+      <tr>
+        <td>{animal.name}</td>
+        <td>
+          {animal.animalType.charAt(0) +
+            animal.animalType.slice(1).toLowerCase()}
+        </td>
+        <td>{animal.breed}</td>
+        <td>{animal.dob}</td>
+        <td>{animal.healthStatus}</td>
+        {/* <td>{animal.age}</td> */}
+        <td>{animal.status}</td>
+        <td>{animal.adminStatus}</td>
+        <td>{animal.technicianStatus}</td>
+        <td>{approveStatusButton()}</td>
+        <td>
+          <Link
+            onClick={ButtonRedirect}
+            to={`/Animal/${animal.animalId}`}
+            key={animal.animalId}
+          >
+            <Button variant="primary">View</Button>
+          </Link>
+        </td>
+
+        {/* this could link to a page? */}
+      </tr>
+    );
+  } else {
+    return (
+      <tr>
+        <td>{animal.name}</td>
+        <td>
+          {animal.animalType.charAt(0) +
+            animal.animalType.slice(1).toLowerCase()}
+        </td>
+        <td>{animal.breed}</td>
+        <td>{animal.dob}</td>
+        <td>{animal.healthStatus}</td>
+        {/* <td>{animal.age}</td> */}
+        <td>{animal.status}</td>
+        <td>{animal.adminStatus}</td>
+        <td>{animal.technicianStatus}</td>
+        <td>
+          {
+            <Button variant="secondary" disabled>
+              {animal.status}
+            </Button>
+          }
+        </td>
+        <td>
+          <Link
+            onClick={ButtonRedirect}
+            to={`/Animal/${animal.animalId}`}
+            key={animal.animalId}
+          >
+            <Button variant="primary">View</Button>
+          </Link>
+        </td>
+      </tr>
+    );
+  }
 };
 
 export default AnimalItem;

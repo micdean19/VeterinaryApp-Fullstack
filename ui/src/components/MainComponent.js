@@ -22,9 +22,9 @@ const Main = ({ user, setUser }) => {
       <Header setUser={setUser} user={user} />
       <Switch>
         <Route path="/home" component={Home} />
+        {/* <Route path="/requests" component={Request} /> */}
         <Route path="/animal" component={Animal} />
         <Route path="/admin" component={Admin} />
-        {/* <Route path="/animalstatus" component={AnimalStatus} /> */}
         <Redirect to="/home" />
       </Switch>
       <Footer />
