@@ -118,7 +118,7 @@ VALUES
     (1001,'Alex and Mike', 'Dog', 'Available', '1000', '1000', 'German Shepards','2019-12-12', 'Healthy','https://www.k9web.com/wp-content/uploads/2020/09/pros-and-cons-of-giant-alaskan-malamute-780x524.jpg'),
     (1002,'Mia', 'Cat',  'Pending', '1002', '1000', 'A brownish type', '2019-12-12', 'Sick',' https://cdn1.tedsby.com/tb/large/storage/3/0/5/305353/stuffed-cat-cute-cats-collection.jpg'),
     (1003,'Moshirpour Jr.', 'Cat', 'Approved', '1002', '1001', 'A brownish type', '2019-12-12', 'Healthy','https://i.pinimg.com/736x/33/32/6d/33326dcddbf15c56d631e374b62338dc.jpg'),
-    (1004,'Dr Moshirpour', 'Dog', 'Approved', '1004', '1005', 'The fluffy type - Malamute', '2019-12-12', 'Healthy','https://pasteboard.co/g5z3ypgpbpIr.jpg');
+    (1004,'Dr Moshirpour', 'Dog', 'Approved', '1004', '1005', 'The fluffy type - Malamute', '2019-12-12', 'Healthy','https://i.imgur.com/Fydwycg.jpeg');
 
 
 DROP TABLE IF EXISTS Appointments;
