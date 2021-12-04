@@ -37,9 +37,9 @@ VALUES
 	(1000, "null", 'null', "null@hotmail.com", "null", "null", ".", "NULL"),
     (1001, 'Mike19', 'milk', 'mic.19@hotmail.com', 'Michael', 'Ah', 'Hello this is a comment', 'INSTRUCTOR'),
     (1002, 'Aleakos', 'juice', 'aleakos@hotmail.com', 'Alex', 'Leakos', '....', 'ADMIN'),
-	(1003, 'Instructor_1', 'pt@123', 'Instructor_1@hotmail.com', 'Instructor', '1', '..', 'INSTRUCTOR'),
-	(1004, 'Admin_1', 'pa', 'Admin_1@hotmail.com', 'Admin', '1', '..', 'ADMIN'),
-	(1005, 'Technician', 'pe', 'Technician@hotmail.com', 'Technician', '0', '..', 'TECHNICIAN');
+	(1003, 'Instructor_1', 'pt@123', 'Instructor_1@hotmail.com', 'Instructor_1', '1', '..', 'INSTRUCTOR'),
+	(1004, 'Admin_1', 'pa', 'Admin_1@hotmail.com', 'Admin_1', '1', '..', 'ADMIN'),
+	(1005, 'Technician', 'pe', 'Technician@hotmail.com', 'Technician_0', '0', '..', 'TECHNICIAN');
 
 
 DROP TABLE IF EXISTS HealthPeople;
@@ -101,9 +101,10 @@ CREATE TABLE ANIMAL
 	Status				VARCHAR(20)			NOT NULL,
 	AdminStatus			INT					NOT NULL,
 	TechnicianStatus	INT					NOT NULL,
-    Breed				VARCHAR(20)		    NOT NULL,
+    Breed				VARCHAR(30)		    NOT NULL,
     Dob					DATE				Not NULL,
     HealthStatus		VARCHAR(20) 	    NOT NULL,
+    ImageLink			VARCHAR(100)		NOT NULL,
     PRIMARY KEY (AnimalID)                      ,
     FOREIGN KEY(AnimalType) REFERENCES ANIMAL_TYPE(AnimalType),
 	FOREIGN KEY(AdminStatus) REFERENCES USERS(UserID),
@@ -114,10 +115,10 @@ CREATE TABLE ANIMAL
 -- Inserting Values.
 INSERT INTO ANIMAL
 VALUES
-    (1001,'Scott', 'Dog', 'Available', '1000', '1000', 'German Shepard','2019-12-12', 'Healthy'),
-    (1002,'Mia', 'Cat',  'Pending', '1004', '1000', 'A brownish type', '2019-12-12', 'Sick'),
-    (1003,'Maddy', 'Cat', 'Approved', '1004', '1005', 'A brownish type', '2019-12-12', 'Healthy'),
-    (1004,'Maddy', 'Cat', 'Available', '1000', '1000', 'A red type', '2019-12-12', 'Healthy');
+    (1001,'Alex and Mike', 'Dog', 'Available', '1000', '1000', 'German Shepards','2019-12-12', 'Healthy','https://www.k9web.com/wp-content/uploads/2020/09/pros-and-cons-of-giant-alaskan-malamute-780x524.jpg'),
+    (1002,'Mia', 'Cat',  'Pending', '1002', '1000', 'A brownish type', '2019-12-12', 'Sick',' https://cdn1.tedsby.com/tb/large/storage/3/0/5/305353/stuffed-cat-cute-cats-collection.jpg'),
+    (1003,'Moshirpour Jr.', 'Cat', 'Approved', '1002', '1001', 'A brownish type', '2019-12-12', 'Healthy','https://i.pinimg.com/736x/33/32/6d/33326dcddbf15c56d631e374b62338dc.jpg'),
+    (1004,'Dr Moshirpour', 'Dog', 'Approved', '1004', '1005', 'The fluffy type - Malamute', '2019-12-12', 'Healthy','https://pasteboard.co/g5z3ypgpbpIr.jpg');
 
 
 DROP TABLE IF EXISTS Appointments;

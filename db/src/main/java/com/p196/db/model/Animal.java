@@ -13,12 +13,13 @@ public class Animal
     private String name;
     private String animalType;
     private String status;
-    private Integer adminStatus;
-    private Integer technicianStatus;
+    private String adminStatus;
+    private String technicianStatus;
     private String breed;
     private LocalDate dob;
     private String healthStatus;
     private Integer age;
+    private String image;
     // Add 3 attributes + their getters and setters
 
     public Animal() {
@@ -113,19 +114,27 @@ public class Animal
 		this.status = status;
 	}
 
-	public Integer getAdminStatus() {
+	public String getAdminStatus() {
 		return adminStatus;
 	}
 
-	public void setAdminStatus(Integer adminStatus) {
-		this.adminStatus = adminStatus;
+	public void setAdminStatus(String string) {
+		this.adminStatus = string;
 	}
 
-	public Integer getTechnicianStatus() {
+	public String getTechnicianStatus() {
 		return technicianStatus;
 	}
 
-	public void setTechnicianStatus(Integer technicianStatus) {
+	public void setTechnicianStatus(String technicianStatus) {
 		this.technicianStatus = technicianStatus;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }
