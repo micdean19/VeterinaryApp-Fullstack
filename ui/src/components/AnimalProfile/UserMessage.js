@@ -3,6 +3,7 @@ import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 import Container from 'react-bootstrap/Container';
 import { Button } from 'react-bootstrap';
+import AnimalInfo from './AnimalInfoModal';
 
 const styles = {
   container: {
@@ -28,7 +29,7 @@ const UserMessage = (props) => {
             <small className="text-muted">{props.timestamp}</small>
           </Toast.Header>
           <Toast.Body className="Dark">{props.message}</Toast.Body>
-          <Button className="mb-2">Detailed View</Button>
+          <AnimalInfo props={props} />
         </Toast>{' '}
       </ToastContainer>
     </Container>
