@@ -16,7 +16,7 @@ const Animals = () => {
       let params = {};
       let headers = {};
 
-      //TODO need to swith to the correct endpoint
+      //TODO need to switch to the correct endpoint
       if (animalName !== "") {
         endpoint = "/searchName";
         params = {

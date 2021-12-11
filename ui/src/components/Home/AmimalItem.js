@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, BrowserRouter, Link } from "react-router-dom";
 import Animal from "../AnimalComponent";
 import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 const AnimalItem = ({ animal, setSelectedAnimal, reRender, setReRender }) => {
@@ -123,23 +124,36 @@ const AnimalItem = ({ animal, setSelectedAnimal, reRender, setReRender }) => {
       });
   };
 
+  const tableImage = {
+    maxWidth: "100%",
+    maxHeight: "100%",
+    height: "6rem",
+  };
+
+  const tableText = {
+    justifyContent: "center",
+    verticalAlign: "middle",
+    textAlign: "center",
+    height: "100%",
+  };
+
   if (user) {
     return (
       <tr>
-        <td>{animal.name}</td>
-        <td>
+        <td style={tableText}>
+          <Image src={animal.image} rounded style={tableImage} />
+        </td>
+        <td style={tableText}>{animal.name}</td>
+        <td style={tableText}>
           {animal.animalType.charAt(0) +
             animal.animalType.slice(1).toLowerCase()}
         </td>
-        <td>{animal.breed}</td>
-        <td>{animal.dob}</td>
-        <td>{animal.healthStatus}</td>
-        {/* <td>{animal.age}</td> */}
-        <td>{animal.status}</td>
-        <td>{animal.adminStatus}</td>
-        <td>{animal.technicianStatus}</td>
-        <td>{approveStatusButton()}</td>
-        <td>
+        <td style={tableText}>{animal.breed}</td>
+        <td style={tableText}>{animal.dob}</td>
+        <td style={tableText}>{animal.healthStatus}</td>
+        <td style={tableText}>{animal.status}</td>
+        <td style={tableText}>{approveStatusButton()}</td>
+        <td style={tableText}>
           <Link
             onClick={ButtonRedirect}
             to={`/Animal/${animal.animalId}`}
@@ -155,26 +169,23 @@ const AnimalItem = ({ animal, setSelectedAnimal, reRender, setReRender }) => {
   } else {
     return (
       <tr>
-        <td>{animal.name}</td>
-        <td>
+        <td style={tableText}>{animal.name}</td>
+        <td style={tableText}>
           {animal.animalType.charAt(0) +
             animal.animalType.slice(1).toLowerCase()}
         </td>
-        <td>{animal.breed}</td>
-        <td>{animal.dob}</td>
-        <td>{animal.healthStatus}</td>
-        {/* <td>{animal.age}</td> */}
-        <td>{animal.status}</td>
-        <td>{animal.adminStatus}</td>
-        <td>{animal.technicianStatus}</td>
-        <td>
+        <td style={tableText}>{animal.breed}</td>
+        <td style={tableText}>{animal.dob}</td>
+        <td style={tableText}>{animal.healthStatus}</td>
+        <td style={tableText}>{animal.status}</td>
+        <td style={tableText}>
           {
             <Button variant="secondary" disabled>
               {animal.status}
             </Button>
           }
         </td>
-        <td>
+        <td style={tableText}>
           <Link
             onClick={ButtonRedirect}
             to={`/Animal/${animal.animalId}`}
