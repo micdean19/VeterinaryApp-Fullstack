@@ -1,28 +1,43 @@
-import React, { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import Upload from "./UploadPhoto";
+import React, { useState, useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Treatment from './UploadPhoto';
+import { render } from 'react-dom';
 const AnimalHome = ({ animal, setAnimal }) => {
+  const [user, setUser] = useState();
+  const [student, setStudent] = useState(false);
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+      if (foundUser.accessLevel === 'STUDENT') {
+        setStudent(true);
+      }
+    }
+  }, []);
+
   const imgStyle = {
     // width: "450px",
     // height: "auto",
-    maxHeight: "450px",
-    width: "auto",
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
+    maxHeight: '450px',
+    width: 'auto',
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   };
   const positionRow = {
-    height: "68vh",
-    marginTop: "4rem",
-    marginBottom: "4rem",
+    height: '68vh',
+    marginTop: '4rem',
+    marginBottom: '4rem',
   };
 
   const tableheader = {
-    width: "25%",
+    width: '25%',
   };
 
   if (animal === null) {
@@ -34,11 +49,7 @@ const AnimalHome = ({ animal, setAnimal }) => {
           <Row style={positionRow}>
             <Col>
               <img style={imgStyle} src={animal.image} alt="new" />
-              <Upload buttonTitle="Upload Photo" />
-
-              <Button className="m-3" variant="dark">
-                Report Problem
-              </Button>
+              {student ? null : <Treatment user={user} animal={animal} />}
             </Col>
             <Col>
               <Table striped bordered hover>
@@ -103,14 +114,6 @@ const AnimalHome = ({ animal, setAnimal }) => {
                     </td>
                   </tr>
                   {/* Last Health Check */}
-                  <tr>
-                    <td className="fw-bold">Go to Person</td>
-                    <td className="font-weight-bold text-center" colSpan="3">
-                      {/* Might have to load in props in here. */}
-                      STILL HARDCODED
-                    </td>
-                  </tr>
-                  {/* Person to go to */}
                 </tbody>
               </Table>
             </Col>
