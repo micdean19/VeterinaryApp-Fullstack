@@ -33,4 +33,13 @@ public class RoleDAO implements FormDAO<Role>{
                 "SELECT RoleName FROM ROLE_TYPE";
         return jdbcTemplate.query(sql, rowMapper);
     }
+
+    @Override
+    public void update(Integer userId, String role) {
+        String sql = "UPDATE USER SET AccessLevel = ? WHERE UserID = ?";
+        jdbcTemplate.update(sql, role.toUpperCase(), userId);
+    }
+
+
+
 }

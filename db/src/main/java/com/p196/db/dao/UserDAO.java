@@ -96,9 +96,35 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public void update(User user, int id) {
+    public void update(User user, int userId) {
+        System.out.println(user);
+        String sql =
+                "UPDATE USERS " +
+                        "SET " +
+                        "Username = ?, " +
+                        "Password = ?, " +
+                        "Email = ?, " +
+                        "Fname = ?, " +
+                        "Lname = ?, " +
+                        "OtherStuffs = ?, " +
+                        "AccessLevel = ? " +
+                        "WHERE UserID = ?";
 
+        int update = jdbcTemplate.update(
+                sql,
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getOther(),
+                user.getAccessLevel(),
+                userId);
+        if(update == 1){
+            log.info("User with username " + userId + " updated");
+        }
     }
+
 
     @Override
     public void delete(int id) {

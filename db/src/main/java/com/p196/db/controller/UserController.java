@@ -65,6 +65,7 @@ public class UserController {
         return "Deleted successfully";
     }
 
+    @CrossOrigin
     @PutMapping()
     public String updateUser(@ModelAttribute User user,
                              @RequestParam(required = false, name="UserID") Integer userId,

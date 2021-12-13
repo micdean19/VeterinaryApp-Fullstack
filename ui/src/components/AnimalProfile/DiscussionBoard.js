@@ -123,9 +123,10 @@ const Discussion = ({ animal }) => {
       <Container>
         <InputGroup>
           <Button
-            variant="outline-primary"
+            variant={disabled ? 'secondary' : 'primary-outline'}
             id="button-addon1"
             onClick={handleSubmit}
+            disabled={disabled}
           >
             Submit
           </Button>
