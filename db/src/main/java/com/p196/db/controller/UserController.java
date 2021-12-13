@@ -20,7 +20,6 @@ public class UserController {
         this.dao = dao;
     }
 
-//    @CrossOrigin
     @GetMapping(path="/all")
     public List<User> getUserList() {
         return dao.list();
@@ -46,6 +45,7 @@ public class UserController {
 
     }
 
+    @CrossOrigin
     @PostMapping()
     public String registerUser(@ModelAttribute User user,
                              @RequestParam(required = false, name="UserKey") String userKey)

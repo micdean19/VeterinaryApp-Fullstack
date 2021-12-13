@@ -1,10 +1,7 @@
 package com.p196.db.Forms;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,4 +20,21 @@ public class HistoryController {
     ) {
         return dao.getHistory(animalId);
     }
+
+    @CrossOrigin
+    @PostMapping()
+    public String registerUser(@ModelAttribute RecordHistory history)
+    {
+        dao.create(history);
+        return history.toString();
+    }
+
+    @CrossOrigin
+    @DeleteMapping()
+    public String updateUser(@ModelAttribute RecordHistory history)
+    {
+        dao.delete(history);
+        return history.toString();
+    }
+
 }

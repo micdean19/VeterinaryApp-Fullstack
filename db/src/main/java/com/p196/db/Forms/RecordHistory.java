@@ -1,10 +1,5 @@
 package com.p196.db.Forms;
 
-import com.p196.db.model.User;
-
-import java.time.LocalDate;
-import java.util.Locale;
-
 public class RecordHistory {
     private Integer animalId;
     private String username;
@@ -13,6 +8,30 @@ public class RecordHistory {
     private String comment;
     private String measurement;
     private String timestamp;
+
+    public RecordHistory(Integer animalId, String username, String userFirstName, String userLastName, String comment, String measurement) {
+        this.animalId = animalId;
+        this.username = username;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.comment = comment;
+        this.measurement = measurement;
+    }
+    public RecordHistory(Integer animalId, String username, String userFirstName, String userLastName, String comment, String measurement, String timestamp) {
+        this.animalId = animalId;
+        this.username = username;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.comment = comment;
+        this.measurement = measurement;
+        this.timestamp = timestamp;
+    }
+
+    public RecordHistory(Integer animalId, String username, String timestamp) {
+        this.animalId = animalId;
+        this.username = username;
+        this.timestamp = timestamp;
+    }
 
     public RecordHistory() {}
 
@@ -70,5 +89,18 @@ public class RecordHistory {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "RecordHistory{" +
+                "animalId=" + animalId +
+                ", username='" + username + '\'' +
+                ", userFirstName='" + userFirstName + '\'' +
+                ", userLastName='" + userLastName + '\'' +
+                ", comment='" + comment + '\'' +
+                ", measurement='" + measurement + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
     }
 }
