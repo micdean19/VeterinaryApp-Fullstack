@@ -259,7 +259,12 @@ CREATE TABLE Prescription
     FOREIGN KEY(UserID) REFERENCES USERS(UserID),
     FOREIGN KEY(DrugID) REFERENCES DRUG(DrugID));
 
-select * from Diagnosis;
 
-select * from Treatment
+INSERT INTO DRUG(Description)
+VALUES('Aspirin'),
+      ('Rabies'),
+      ('Ivermectin'),
+      ('Cortisone');
+
+SELECT * from Prescription
 

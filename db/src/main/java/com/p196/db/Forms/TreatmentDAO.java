@@ -14,7 +14,7 @@ import java.util.Optional;
 @Component
 public class TreatmentDAO {
 
-    private static final Logger log = LoggerFactory.getLogger(RoleDAO.class);
+    private static final Logger log = LoggerFactory.getLogger(TreatmentDAO.class);
     private final JdbcTemplate jdbcTemplate;
 
     public TreatmentDAO(JdbcTemplate jdbcTemplate) {

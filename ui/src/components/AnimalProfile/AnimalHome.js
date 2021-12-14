@@ -3,9 +3,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
-import Treatment from './UploadPhoto';
-import { render } from 'react-dom';
+import Treatment from './Treatment';
+import Prescription from './Prescription';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+
 const AnimalHome = ({ animal, setAnimal }) => {
   const [user, setUser] = useState();
   const [student, setStudent] = useState(false);
@@ -49,7 +50,14 @@ const AnimalHome = ({ animal, setAnimal }) => {
           <Row style={positionRow}>
             <Col>
               <img style={imgStyle} src={animal.image} alt="new" />
-              {student ? null : <Treatment user={user} animal={animal} />}
+              {student ? null : (
+                <>
+                  <ButtonGroup vertical>
+                    <Treatment user={user} animal={animal} />
+                    <Prescription user={user} animal={animal} />
+                  </ButtonGroup>
+                </>
+              )}
             </Col>
             <Col>
               <Table striped bordered hover>
