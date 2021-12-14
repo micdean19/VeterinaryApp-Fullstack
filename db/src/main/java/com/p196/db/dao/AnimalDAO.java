@@ -34,9 +34,7 @@ public class AnimalDAO implements DAO<Animal>{
         animal.setHealthStatus(rs.getString("HealthStatus"));
         animal.setImage(rs.getString("ImageLink"));
         animal.setAge();
-        // animal set Status
-        //animal set Admin approval
-        //animal set instructor approval
+
         return animal;
     };
 

@@ -20,7 +20,6 @@ public class Animal
     private String healthStatus;
     private Integer age;
     private String image;
-    // Add 3 attributes + their getters and setters
 
     public Animal() {
     }
