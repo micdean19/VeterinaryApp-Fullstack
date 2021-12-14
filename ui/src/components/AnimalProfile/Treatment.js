@@ -64,7 +64,7 @@ const Treatment = ({ animal, user }) => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Treatment</Modal.Title>
         </Modal.Header>
         <Container>
           <Form.Label className="mt-3">Upload Picture</Form.Label>

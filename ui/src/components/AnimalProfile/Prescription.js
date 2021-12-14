@@ -64,7 +64,7 @@ const Prescription = ({ animal, user }) => {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Prescription</Modal.Title>
         </Modal.Header>
         <Container>
           <DropdownButton
