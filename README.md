@@ -1,6 +1,8 @@
 # Final-Project
 
-607 final project By Michael Ah-Kiow & Alex Leakos
+A full stack web development application design for a capstone project for handling animal requests at Spyhill. The database is written in mySql. The backend is a maven project with jdbc and springboot for the API. Finally frontend is written in react.
+
+By Michael Ah-Kiow & Alex Leakos
 
 ## Video:
 
