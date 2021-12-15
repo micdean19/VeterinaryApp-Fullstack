@@ -1,47 +1,33 @@
 # Final-Project
-607 final project
+
+607 final project By Michael Ah-Kiow & Alex Leakos
+
+## Video:
+
+[Final Presentation](./Final_Presentation.mp4)
+[Alternatively external link to video](https://youtu.be/hb6mLi8JM0A)
 
 ## Details & Links
-* [Jira](https://uofceng607-196.atlassian.net/jira/software/projects/P196/boards/1)
-* By Michael Ah-Kiow & Alexander Leakos
-* [Github](https://github.com/Software-Engineering-Courses-Moshirpour/final-project-uofeng607-196/tree/main) 
+
+-   [Jira](https://uofceng607-196.atlassian.net/jira/software/projects/P196/boards/1)
+-   By Michael Ah-Kiow & Alexander Leakos
+-   [Github](https://github.com/Software-Engineering-Courses-Moshirpour/final-project-uofeng607-196/tree/main)
+
 ## How to to run:
-1. Download and run the Schema.sql attached in the Main Branch
+
+1. Download and run the ENSF607.sql attached in the Main Branch and run the script
 2. Open the Maven Project (Folder is DB) and click on "existing projects" in maven.
 3. Ensure that the SQL database is active and running.
-4. Start the program.
+4. Run the program from IDE or using the commands related to the backend (next section)
+5. Now Cd To UI
+6. Run Npm Install (to install required dependencies)
+7. Npm Start
+8. Enjoy the Program
 
-Small note:  We used Spring boot and integrated our backend api with a mysql database as mock data.
-
-## Stories and Epics Covered:
-
-Note, all functionality for these stories has not been implemented, however, all of these stories have endpoints associated. 
-
-* Epic P196-2:
-  - Story: P196-8 - View Animal Status
-* Epic P196-21 Admin Access:
-  - Story: P196-30
-  - Story: P196-29
-  - Story: P196-25
-  - Story: P196-6
-  - Story: P196-7
-* Epic P196-35:
-  - Story: P196-46
-  - Story P196-47
-* Epic 196-31:
-  - Story P196-37
-## Examples of a working backend with the API:
-
-1. Illustration of our mocktables (that was loaded into the mysql database)
-![mocktables](resources/Mocktables.PNG)
-
-## Commands to Run From Command Line:
+## Commands to Run the backend from scratch using Command Line:
 
 While in `final-project-uofeng607-196`:
-- navigate down one level into db `cd db`
-- build maven project with `mvn install`
-- run projet with `mvn exec:java -Dexec.mainClass=com.p196.db.DbApplication`
 
-## Video
-https://www.loom.com/share/5ad8564c427048c18e7cd98c4f832f3a
-
+-   navigate down one level into db `cd db`
+-   build maven project with `mvn install`
+-   run projet with `mvn exec:java -Dexec.mainClass=com.p196.db.DbApplication`
